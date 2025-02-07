@@ -39,13 +39,14 @@
           enter-from-class="opacity-0 translate-y-6"
           enter-to-class="opacity-100 translate-y-0"
         >
+        
           <div class="mt-6 flex justify-center md:justify-start">
+            <RouterLink to="/book">
             <button 
-              @click="scrollToBooking"
-              class="bg-[#D8A444] text-[#2C2C2C] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#B4952E] transition-colors w-full sm:w-auto"
-            >
+              class="bg-[#D8A444] text-[#2C2C2C] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#B4952E] transition-colors w-full sm:w-auto">
               Book Us
             </button>
+          </RouterLink>
           </div>
         </Transition>
       </div>
@@ -54,6 +55,7 @@
 </template>
 
 <script setup>
+import { RouterLink } from 'vue-router';
 const scrollToBooking = () => {
   document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
 };
