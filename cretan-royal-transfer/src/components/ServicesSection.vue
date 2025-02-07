@@ -22,11 +22,11 @@
                 {{ feature }}
               </li>
             </ul>
-            <a href="/book">
+            <RouterLink to="/book">
               <button class="w-full bg-stone-800 text-white py-2 rounded-md hover:bg-stone-900 transition-colors">
                 Book Now
               </button>
-            </a>
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -35,6 +35,7 @@
 </template>
 
 <script setup>
+import { RouterLink, useRoute } from 'vue-router';
 import { ref } from 'vue';
 import aiportchaniaimg from '/src/assets/airport-chania-services.jpg';
 import airportheraklionimg from '/src/assets/airport-heraklion-services.jpg';
