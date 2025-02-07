@@ -1,85 +1,86 @@
 <template>
-  <div ref="aboutSection" class="py-16 px-4 sm:px-6 lg:px-8 bg-stone-100" id="about">
-    <div class="max-w-7xl mx-auto">
-      <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
-        <!-- Text Section -->
-        <div 
-          class="relative transform transition-transform duration-1000 ease-out opacity-0"
-          :class="{'translate-x-0 opacity-100': isVisible, '-translate-x-10': !isVisible}"
-        >
-          <h2 class="text-3xl font-extrabold text-stone-900 tracking-tight sm:text-4xl">
-            About Our Safari Adventures
-          </h2>
-          <p class="mt-3 text-lg text-stone-600">
-            We are leading adventurous souls through the hidden gems of Crete. Our expert guides combine deep local knowledge with a passion for nature, creating unforgettable experiences that showcase the island's wild beauty.
-          </p>
-          <div class="mt-10 space-y-4">
-            <div class="flex">
-              <div class="flex-shrink-0">
-                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-amber-600 text-white">
-                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-              </div>
-              <div class="ml-4">
-                <h3 class="text-lg font-medium text-stone-900">Expert Local Guides</h3>
-                <p class="mt-2 text-base text-stone-600">Our guides are born and raised in Crete, with intimate knowledge of its terrain and wildlife.</p>
-              </div>
-            </div>
-            <div class="flex">
-              <div class="flex-shrink-0">
-                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-amber-600 text-white">
-                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-              </div>
-              <div class="ml-4">
-                <h3 class="text-lg font-medium text-stone-900">Small Group Tours</h3>
-                <p class="mt-2 text-base text-stone-600">We keep our groups small to ensure a personal and immersive experience for every guest.</p>
-              </div>
-            </div>
+  <div ref="aboutSection" class="py-16 px-4 sm:px-6 lg:px-8 bg-[#2C2C2C]" id="about">
+    <div class="max-w-7xl mx-auto text-center">
+      <Transition appear enter-active-class="transition duration-1000" enter-from-class="opacity-0 translate-y-6" enter-to-class="opacity-100 translate-y-0">
+        <h2 class="text-3xl font-extrabold text-[#E5E5E5] tracking-tight sm:text-4xl mb-16">
+          About Cretan Royal Transfer
+        </h2>
+      </Transition>
+    </div>
+    
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 text-center">
+      <TransitionGroup appear enter-active-class="transition duration-1000 delay-300" enter-from-class="opacity-0 translate-y-6" enter-to-class="opacity-100 translate-y-0">
+        <div v-for="(item, index) in features" :key="index">
+          <div class="flex items-center justify-center h-16 w-16 rounded-full bg-[#D8A444] text-[#2C2C2C] mx-auto">
+            <img :src="item.icon" class="h-10 w-10" :alt="item.alt" />
           </div>
+          <h3 class="text-lg font-medium text-[#E5E5E5] mt-6">{{ item.title }}</h3>
+          <p class="mt-4 text-base text-[#E5E5E5] text-justify">{{ item.description }}</p>
         </div>
-
-        <!-- Image Section -->
-        <div 
-          class="mt-10 lg:mt-0 transform transition-transform duration-1000 ease-out opacity-0"
-          :class="{'translate-x-0 opacity-100': isVisible, 'translate-x-10': !isVisible}"
-        >
-          <div class="aspect-w-16 aspect-h-9">
-            <img 
-              class="rounded-lg shadow-lg object-cover"
-              src="../assets/crete_safari_logo.jpg"
-              alt="Safari Experience Logo"
-            />
-          </div>
-        </div>
+      </TransitionGroup>
+    </div>
+    
+    <div class="max-w-5xl mx-auto mt-16 relative">
+      <div class="overflow-hidden relative w-full rounded-lg shadow-lg">
+        <TransitionGroup name="fade-slide" tag="div" class="flex transition-transform duration-1000 ease-in-out" id="carousel">
+          <img v-for="(image, i) in images" :key="i" :src="image" class="w-full flex-shrink-0 object-cover" alt="Cretan Royal Transfer Image" />
+        </TransitionGroup>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+.fade-slide-enter-active, .fade-slide-leave-active {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+.fade-slide-enter-from, .fade-slide-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
+}
+</style>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 
 const aboutSection = ref(null);
 const isVisible = ref(false);
+const index = ref(0);
+const totalSlides = 4;
+
+const features = [
+  { icon: '/src/assets/icons/car.svg', title: 'Reliable Transfers', description: 'We provide efficient and comfortable transfers across Crete with professional drivers ensuring a hassle-free experience.', alt: 'Car Icon' },
+  { icon: '/src/assets/icons/shield.svg', title: 'Safety First', description: 'Our top priority is your safety. We maintain our vehicles to the highest standards and provide professional drivers for a secure journey.', alt: 'Shield Icon' },
+  { icon: '/src/assets/icons/airport.svg', title: 'Airport Transfers', description: 'We offer punctual and stress-free airport transfers, ensuring you reach your destination on time and in comfort.', alt: 'Airport Icon' },
+  { icon: '/src/assets/icons/map.svg', title: 'Leisure Trips', description: 'Explore Crete in style with our leisure trip services. Discover the island\'s beauty with our luxurious and comfortable transport options.', alt: 'Map Icon' }
+];
+
+const images = [
+  '/src/assets/reliability-aboutus.jpg',
+  '/src/assets/safety-aboutus.jpg',
+  '/src/assets/airport-aboutus.jpg',
+  '/src/assets/leasure-aboutus.jpg'
+];
 
 onMounted(() => {
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
         isVisible.value = true;
-        observer.unobserve(entry.target); // Stop observing once it's visible
+        observer.unobserve(entry.target);
       }
     },
-    { threshold: 0.3 } // Trigger when 30% of the section is visible
+    { threshold: 0.3 }
   );
 
   if (aboutSection.value) {
     observer.observe(aboutSection.value);
   }
+
+  // Auto-change slides every 2 seconds
+  setInterval(() => {
+    index.value = (index.value + 1) % totalSlides;
+    document.getElementById('carousel').style.transform = `translateX(-${index.value * 100}%)`;
+  }, 2000);
 });
 </script>

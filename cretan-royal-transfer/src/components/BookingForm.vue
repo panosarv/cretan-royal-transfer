@@ -1,61 +1,40 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { format, addDays, parseISO } from 'date-fns';
+import { ref, computed, onMounted } from 'vue';
 import emailjs from '@emailjs/browser';
 
-const availableTimeSlots = [
-  '09:00', '11:00', '13:00', '15:00'
-];
+const companyPhone = '+306948422070'; // Change to your business number
+const companyEmail = 'pngarva@gmail.com'; // Change to your company email
 
-const safariExperiences = [
-  'Mountain Safari', 'Coastal Safari', 'Village Safari'
-];
+const services = ref([
+  'Airport Transfer - Chania', 'Airport Transfer - Heraklion', 'Knossos Tour', 'Preveli Tour',
+  'Arkadi Tour', 'Kalypso - Plaka Tour', 'Elafonisi Tour', 'Balos Tour', 'Kournas Lake',
+  'Samaria Tour', 'Chania Old Town', 'Matala - Malia Tour', 'Heraklion Tour', 'Seitan Harbor'
+]);
 
 const name = ref('');
+const surname = ref('');
 const email = ref('');
 const phone = ref('');
 const selectedDate = ref('');
-const selectedTime = ref('');
-const selectedExperience = ref('');
+const selectedService = ref('');
 const guests = ref(1);
 
-const nextWeekDates = computed(() => {
-  const dates = [];
-  const today = new Date();
-  for (let i = 1; i <= 7; i++) {
-    const date = addDays(today, i);
-    dates.push({
-      date: format(date, 'yyyy-MM-dd'),
-      formatted: format(date, 'MMM dd, yyyy')
-    });
-  }
-  return dates;
-});
-
 const isFormValid = computed(() => {
-  return name.value && 
-         email.value && 
-         phone.value && 
-         selectedDate.value && 
-         selectedTime.value && 
-         selectedExperience.value && 
-         guests.value > 0;
+  return name.value && surname.value && email.value && phone.value && selectedDate.value && selectedService.value && guests.value > 0;
 });
 
 const submitBooking = async () => {
   try {
     const templateParams = {
-      to_name: 'Safari Owner',
-      from_name: name.value,
+      to_email: companyEmail,
+      from_name: `${name.value} ${surname.value}`,
       guest_email: email.value,
       guest_phone: phone.value,
-      booking_date: format(parseISO(selectedDate.value), 'MMMM dd, yyyy'),
-      booking_time: selectedTime.value,
-      safari_experience: selectedExperience.value,
-      guests: guests.value
+      booking_date: selectedDate.value,
+      service: selectedService.value,
+      guests: guests.value,
     };
 
-    // Replace these with your EmailJS credentials
     await emailjs.send(
       'YOUR_SERVICE_ID',
       'YOUR_TEMPLATE_ID',
@@ -63,134 +42,71 @@ const submitBooking = async () => {
       'YOUR_PUBLIC_KEY'
     );
 
-    alert('Booking submitted successfully! We will contact you shortly.');
+    alert('Booking request sent successfully! We will contact you shortly.');
     resetForm();
   } catch (error) {
-    console.error('Error submitting booking:', error);
-    alert('There was an error submitting your booking. Please try again.');
+    console.error('Error sending booking request:', error);
+    alert('There was an error sending your request. Please try again.');
   }
 };
 
 const resetForm = () => {
   name.value = '';
+  surname.value = '';
   email.value = '';
   phone.value = '';
   selectedDate.value = '';
-  selectedTime.value = '';
-  selectedExperience.value = '';
+  selectedService.value = '';
   guests.value = 1;
+};
+
+const openWhatsApp = () => {
+  const message = `Hello, I would like to book a ${selectedService.value} on ${selectedDate.value} for ${guests.value} people.`;
+  window.open(`https://wa.me/${companyPhone}?text=${encodeURIComponent(message)}`, '_blank');
 };
 </script>
 
 <template>
-  <div class="max-w-2xl mx-auto p-10 bg-gradient-to-r from-yellow-600 to-amber-500 rounded-lg shadow-xl border border-amber-700">
-    <form @submit.prevent="submitBooking" class="space-y-6">
-      <div class="grid grid-cols-2 gap-6">
-        <div>
-          <label class="block text-sm font-medium text-white">Name</label>
-          <input 
-            type="text" 
-            v-model="name"
-            required
-            class="mt-2 block w-full p-3 rounded-md border border-amber-300 shadow-sm focus:border-yellow-400 focus:ring-yellow-400 bg-white text-gray-900"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-white">Email</label>
-          <input 
-            type="email" 
-            v-model="email"
-            required
-            class="mt-2 block w-full p-3 rounded-md border border-amber-300 shadow-sm focus:border-yellow-400 focus:ring-yellow-400 bg-white text-gray-900"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-white">Phone (WhatsApp)</label>
-          <input 
-            type="tel" 
-            v-model="phone"
-            required
-            class="mt-2 block w-full p-3 rounded-md border border-amber-300 shadow-sm focus:border-yellow-400 focus:ring-yellow-400 bg-white text-gray-900"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-white">Date</label>
-          <select 
-            v-model="selectedDate"
-            required
-            class="mt-2 block w-full p-3 rounded-md border border-amber-300 shadow-sm focus:border-yellow-400 focus:ring-yellow-400 bg-white text-gray-900"
-          >
-            <option value="">Select a date</option>
-            <option 
-              v-for="date in nextWeekDates" 
-              :key="date.date" 
-              :value="date.date"
-            >
-              {{ date.formatted }}
-            </option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-white">Time</label>
-          <select 
-            v-model="selectedTime"
-            required
-            class="mt-2 block w-full p-3 rounded-md border border-amber-300 shadow-sm focus:border-yellow-400 focus:ring-yellow-400 bg-white text-gray-900"
-          >
-            <option value="">Select a time</option>
-            <option 
-              v-for="time in availableTimeSlots" 
-              :key="time" 
-              :value="time"
-            >
-              {{ time }}
-            </option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-white">Safari Experience</label>
-          <select 
-            v-model="selectedExperience"
-            required
-            class="mt-2 block w-full p-3 rounded-md border border-amber-300 shadow-sm focus:border-yellow-400 focus:ring-yellow-400 bg-white text-gray-900"
-          >
-            <option value="">Select an experience</option>
-            <option 
-              v-for="experience in safariExperiences" 
-              :key="experience" 
-              :value="experience"
-            >
-              {{ experience }}
-            </option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-white">Number of Guests</label>
-          <input 
-            type="number" 
-            v-model="guests"
-            min="1"
-            max="10"
-            required
-            class="mt-2 block w-full p-3 rounded-md border border-amber-300 shadow-sm focus:border-yellow-400 focus:ring-yellow-400 bg-white text-gray-900"
-          />
-        </div>
+  <div class="max-w-2xl mx-auto p-10 bg-white rounded-lg shadow-xl border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Book a Service</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">First Name</label>
+        <input v-model="name" type="text" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
       </div>
-      
-      <button 
-        type="submit"
-        :disabled="!isFormValid"
-        class="w-full bg-yellow-700 text-white py-3 px-4 rounded-md hover:bg-yellow-800 disabled:bg-stone-400 disabled:cursor-not-allowed transition-colors shadow-lg"
-      >
-        Book Safari
-      </button>
-    </form>
-  </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Surname</label>
+        <input v-model="surname" type="text" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input v-model="email" type="email" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Phone (WhatsApp)</label>
+        <input v-model="phone" type="tel" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Date</label>
+        <input v-model="selectedDate" type="date" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Select Service</label>
+        <select v-model="selectedService" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+          <option value="">Choose a Service</option>
+          <option v-for="service in services" :key="service" :value="service">{{ service }}</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Number of Guests</label>
+        <input v-model="guests" type="number" min="1" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+      </div>
+    </div>
 
+    <div class="mt-6 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+      <button @click="submitBooking" :disabled="!isFormValid" class="w-full md:w-1/2 bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition">Send Email</button>
+      <button @click="openWhatsApp" class="w-full md:w-1/2 bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 transition">Message on WhatsApp</button>
+      <a :href="`tel:${companyPhone}`" class="w-full md:w-1/2 bg-yellow-500 text-white py-3 px-4 rounded-md hover:bg-yellow-600 text-center transition">Call Now</a>
+    </div>
+  </div>
 </template>

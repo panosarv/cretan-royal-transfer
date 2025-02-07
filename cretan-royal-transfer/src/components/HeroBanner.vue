@@ -1,34 +1,24 @@
-<script setup>
-const scrollToBooking = () => {
-  document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
-};
-
-const scrollToServices = () => {
-  document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-};
-</script>
-
 <template>
-  <div class="relative h-screen">
+  <div class="relative h-screen bg-[#2C2C2C]">
     <div class="absolute inset-0">
       <img 
-        src="../assets/crete_safari_nissan_river.jpg" 
+        src="../assets/airport-hero.jpg" 
         class="w-full h-full object-cover"
-        alt="Safari Landscape"
+        alt="Crete Transfer"
       />
-      <div class="absolute inset-0 bg-black opacity-40"></div>
+      <div class="absolute inset-0 bg-black opacity-50"></div>
     </div>
     
-    <div class="relative max-w-7xl mx-auto h-full flex items-center px-4 sm:px-6 lg:px-8">
-      <div class="text-center w-full">
+    <div class="relative max-w-7xl mx-auto h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center md:text-left">
+      <div class="w-full md:w-2/3 mt-12 md:mt-0">
         <Transition
           appear
           enter-active-class="transition duration-1000"
           enter-from-class="opacity-0 translate-y-6"
           enter-to-class="opacity-100 translate-y-0"
         >
-          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-            Wild Adventures in Crete
+          <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-[#E5E5E5] mb-6">
+            Crete Transfer
           </h1>
         </Transition>
 
@@ -38,8 +28,8 @@ const scrollToServices = () => {
           enter-from-class="opacity-0 translate-y-6"
           enter-to-class="opacity-100 translate-y-0"
         >
-          <p class="text-xl sm:text-2xl text-stone-200 mb-8">
-            Experience the untamed beauty of Crete with our guided safari adventures
+          <p class="text-lg sm:text-xl md:text-2xl text-[#E5E5E5] mb-8 text-justify md:text-justify">
+            Cretan Royal Transfer is dedicated to providing a seamless and comfortable travel experience across Crete. With a focus on security, reliability, and customer satisfaction, our professional drivers ensure a stress-free journey. Whether you're heading to the airport, a hotel, or a scenic destination, you can trust us for a premium transfer service tailored to your needs.
           </p>
         </Transition>
 
@@ -49,22 +39,22 @@ const scrollToServices = () => {
           enter-from-class="opacity-0 translate-y-6"
           enter-to-class="opacity-100 translate-y-0"
         >
-          <div class="space-x-4">
+          <div class="mt-6 flex justify-center md:justify-start">
             <button 
               @click="scrollToBooking"
-              class="bg-amber-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-amber-700 transition-colors"
+              class="bg-[#D8A444] text-[#2C2C2C] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#B4952E] transition-colors w-full sm:w-auto"
             >
-              Book Now
+              Book Us
             </button>
-            <button 
-              @click="scrollToServices"
-              class="bg-stone-800/80 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-stone-900/80 transition-colors inline-block backdrop-blur-sm"
-            >
-              Explore Tours
-          </button>
           </div>
         </Transition>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+const scrollToBooking = () => {
+  document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+};
+</script>
