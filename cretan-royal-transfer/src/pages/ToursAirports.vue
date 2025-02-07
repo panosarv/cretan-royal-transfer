@@ -44,88 +44,104 @@
   
   <script setup>
   import { ref, onMounted } from 'vue';
-  
+  import airportimg from '/src/assets/airport-chania-services.jpg';
+  import airportimg2 from '/src/assets/airport-heraklion-services.jpg';
+  import knossosimg from '/src/assets/knossos-services.jpeg';
+  import preveliimg from '/src/assets/preveli-services.jpg';
+  import arkadiimg from '/src/assets/arkadi-services.jpg';
+  import kalypsoimg from '/src/assets/kalypso-tours.jpg';
+  import elafonisiimg from '/src/assets/elafonisi-tours.jpeg';
+  import balosimg from '/src/assets/balos-tours.jpg';
+  import kournasimg from '/src/assets/kournas-tours.jpg';
+  import samariaimg from '/src/assets/samaria-tours.jpg';
+  import chaniaimg from '/src/assets/chania-old-town-tours.jpg';
+  import matalaimg from '/src/assets/matala-malia-tours.jpg';
+  import heraklionimg from '/src/assets/heraklion-tours.jpg';
+  import seitanimg from '/src/assets/seitan-services.jpg';
+
+
+
   const services = ref([
   {
-      image: '/src/assets/airport-chania-services.jpg',
+      image: airportimg,
       title: 'Airport Transfer - Chania',
       description: 'Reliable and comfortable transfers from Chania Airport to your destination.',
       features: ['24/7 Availability', 'Luxury Vehicles', 'Meet & Greet Service']
     },
     {
-      image: '/src/assets/airport-heraklion-services.jpg',
+      image: airportimg2,
       title: 'Airport Transfer - Heraklion',
       description: 'Efficient transfers from Heraklion Airport to any location in Crete.',
       features: ['Professional Drivers', 'VIP Service', 'Fast & Safe']
     },
     {
-      image: '/src/assets/knossos-services.jpeg',
+      image: knossosimg,
       title: 'Knossos Tour',
       description: 'Discover the ancient ruins of Knossos with a guided tour and transport.',
       features: ['Historical Landmarks', 'Expert Guide', 'Comfortable Transport']
     },
     {
-      image: '/src/assets/preveli-services.jpg',
+      image: preveliimg,
       title: 'Preveli Tour',
       description: 'Visit the stunning Preveli beach and monastery with our guided tour.',
       features: ['Scenic Views', 'Luxury Transport', 'Local Guide']
     },
     {
-      image: '/src/assets/arkadi-services.jpg',
+      image: arkadiimg,
       title: 'Arkadi Tour',
       description: 'Explore the historic Arkadi Monastery and its beautiful surroundings.',
       features: ['Cultural Experience', 'Private or Group Tours', 'Hotel Pickup']
     },
     {
-      image: '/src/assets/kalypso-tours.jpg',
+      image: kalypsoimg,
       title: 'Kalypso - Plaka Tour',
       description: 'Experience the beautiful Kalypso and Plaka regions with stunning sea views.',
       features: ['Scenic Drives', 'Luxury Vehicles', 'Guided Experience']
     },
     {
-      image: '/src/assets/elafonisi-tours.jpeg',
+      image: elafonisiimg,
       title: 'Elafonisi Tour',
       description: 'Visit the breathtaking pink sand beaches of Elafonisi with expert guides.',
       features: ['Beach Exploration', 'Private Transfers', 'Nature Experience']
     },
     {
-      image: '/src/assets/balos-tours.jpg',
+      image: balosimg,
       title: 'Balos Tour',
       description: 'Enjoy an unforgettable trip to the iconic Balos Lagoon with comfortable transport.',
       features: ['Boat Transfer', 'Luxury Transport', 'Private Tour Options']
     },
     {
-      image: '/src/assets/kournas-tours.jpg',
+      image: kournasimg,
       title: 'Kournas Lake',
       description: 'Discover the beauty of Kournas Lake, Crete’s only natural freshwater lake.',
       features: ['Relaxing Atmosphere', 'Nature Walks', 'Canoeing Option']
     },
     {
-      image: '/src/assets/samaria-tours.jpg',
+      image: samariaimg,
       title: 'Samaria Tour',
       description: 'Hike through the famous Samaria Gorge, Europe’s longest and most scenic gorge.',
       features: ['Guided Hiking', 'Stunning Views', 'Wildlife Spotting']
     },
     {
-      image: '/src/assets/chania-old-town-tours.jpg',
+      image: chaniaimg,
       title: 'Chania Old Town',
       description: 'Explore the charming alleys, Venetian harbor, and cultural heritage of Chania Old Town.',
       features: ['Historical Landmarks', 'Local Guides', 'Shopping & Dining']
     },
     {
-      image: '/src/assets/matala-malia-tours.jpg',
+      image: matalaimg,
       title: 'Matala - Malia Tour',
       description: 'Discover the famous Matala caves and Malia’s vibrant atmosphere.',
       features: ['Cultural Sites', 'Beautiful Beaches', 'Guided Tour']
     },
     {
-      image: '/src/assets/heraklion-tours.jpg',
+      image: heraklionimg,
       title: 'Heraklion Tour',
       description: 'Visit the capital of Crete, full of history, culture, and vibrant city life.',
       features: ['Archaeological Museum', 'City Exploration', 'Cretan Cuisine']
     },
     {
-      image: '/src/assets/seitan-services.jpg',
+      image: seitanimg,
       title: 'Seitan Harbor',
       description: 'Experience the breathtaking Seitan Harbor with its stunning blue waters and rocky formations.',
       features: ['Boat Tour', 'Scenic Views', 'Relaxation & Swimming']

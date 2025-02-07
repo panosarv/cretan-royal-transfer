@@ -41,6 +41,14 @@
 </style>
 
 <script setup>
+import caricon from '/src/assets/icons/car.svg';
+import shieldicon from '/src/assets/icons/shield.svg';
+import airporticon from '/src/assets/icons/airport.svg';
+import mapicon from '/src/assets/icons/map.svg';
+import reliabilityimg from '/src/assets/reliability-aboutus.jpg';
+import safetyimg from '/src/assets/safety-aboutus.jpg';
+import airportimg from '/src/assets/airport-aboutus.jpg';
+import leasureimg from '/src/assets/leasure-aboutus.jpg';
 import { ref, onMounted } from 'vue';
 
 const aboutSection = ref(null);
@@ -49,17 +57,17 @@ const index = ref(0);
 const totalSlides = 4;
 
 const features = [
-  { icon: '/src/assets/icons/car.svg', title: 'Reliable Transfers', description: 'We provide efficient and comfortable transfers across Crete with professional drivers ensuring a hassle-free experience.', alt: 'Car Icon' },
-  { icon: '/src/assets/icons/shield.svg', title: 'Safety First', description: 'Our top priority is your safety. We maintain our vehicles to the highest standards and provide professional drivers for a secure journey.', alt: 'Shield Icon' },
-  { icon: '/src/assets/icons/airport.svg', title: 'Airport Transfers', description: 'We offer punctual and stress-free airport transfers, ensuring you reach your destination on time and in comfort.', alt: 'Airport Icon' },
-  { icon: '/src/assets/icons/map.svg', title: 'Leisure Trips', description: 'Explore Crete in style with our leisure trip services. Discover the island\'s beauty with our luxurious and comfortable transport options.', alt: 'Map Icon' }
+  { icon: caricon, title: 'Reliable Transfers', description: 'We provide efficient and comfortable transfers across Crete with professional drivers ensuring a hassle-free experience.', alt: 'Car Icon' },
+  { icon: shieldicon, title: 'Safety First', description: 'Our top priority is your safety. We maintain our vehicles to the highest standards and provide professional drivers for a secure journey.', alt: 'Shield Icon' },
+  { icon: airporticon, title: 'Airport Transfers', description: 'We offer punctual and stress-free airport transfers, ensuring you reach your destination on time and in comfort.', alt: 'Airport Icon' },
+  { icon: mapicon, title: 'Leisure Trips', description: 'Explore Crete in style with our leisure trip services. Discover the island\'s beauty with our luxurious and comfortable transport options.', alt: 'Map Icon' }
 ];
 
 const images = [
-  '/src/assets/reliability-aboutus.jpg',
-  '/src/assets/safety-aboutus.jpg',
-  '/src/assets/airport-aboutus.jpg',
-  '/src/assets/leasure-aboutus.jpg'
+  reliabilityimg,
+  safetyimg,
+  airportimg,
+  leasureimg
 ];
 
 onMounted(() => {

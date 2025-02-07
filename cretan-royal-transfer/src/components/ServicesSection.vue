@@ -36,45 +36,52 @@
 
 <script setup>
 import { ref } from 'vue';
+import aiportchaniaimg from '/src/assets/airport-chania-services.jpg';
+import airportheraklionimg from '/src/assets/airport-heraklion-services.jpg';
+import knossostourimg from '/src/assets/knossos-services.jpeg';
+import prevelitourimg from '/src/assets/preveli-services.jpg';
+import arkaditourimg from '/src/assets/arkadi-services.jpg';
+import seitanharborimg from '/src/assets/seitan-services.jpg';
+
 
 const services = [
   {
-    image: '/src/assets/airport-chania-services.jpg',
+    image: aiportchaniaimg,
     title: 'Airport Transfer - Chania',
     description: 'Reliable and comfortable transfers from Chania Airport to your destination.',
     features: ['24/7 Availability', 'Luxury Vehicles', 'Meet & Greet Service'],
     alt: 'Airport Transfer Chania'
   },
   {
-    image: '/src/assets/airport-heraklion-services.jpg',
+    image: airportheraklionimg,
     title: 'Airport Transfer - Heraklion',
     description: 'Efficient transfers from Heraklion Airport to any location in Crete.',
     features: ['Professional Drivers', 'VIP Service', 'Fast & Safe'],
     alt: 'Airport Transfer Heraklion'
   },
   {
-    image: '/src/assets/knossos-services.jpeg',
+    image: knossostourimg,
     title: 'Knossos Tour',
     description: 'Discover the ancient ruins of Knossos with a guided tour and transport.',
     features: ['Historical Landmarks', 'Expert Guide', 'Comfortable Transport'],
     alt: 'Knossos Tour'
   },
   {
-    image: '/src/assets/preveli-services.jpg',
+    image: prevelitourimg,
     title: 'Preveli Tour',
     description: 'Visit the stunning Preveli beach and monastery with our guided tour.',
     features: ['Scenic Views', 'Luxury Transport', 'Local Guide'],
     alt: 'Preveli Tour'
   },
   {
-    image: '/src/assets/arkadi-services.jpg',
+    image: arkaditourimg,
     title: 'Arkadi Tour',
     description: 'Explore the historic Arkadi Monastery and its beautiful surroundings.',
     features: ['Cultural Experience', 'Private or Group Tours', 'Hotel Pickup'],
     alt: 'Arkadi Tour'
   },
   {
-    image: '/src/assets/seitan-services.jpg',
+    image: seitanharborimg,
     title: 'Seitan Harbor',
     description: 'Spend a day at the beautiful Seitan Harbor with our guided tour.',
     features: ['Relaxing Atmosphere', 'Local Cuisine', 'Boat Trips'],
