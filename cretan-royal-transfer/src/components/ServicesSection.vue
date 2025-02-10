@@ -39,10 +39,10 @@ import { RouterLink, useRoute } from 'vue-router';
 import { ref } from 'vue';
 import aiportchaniaimg from '/src/assets/airport-chania-services.jpg';
 import airportheraklionimg from '/src/assets/airport-heraklion-services.jpg';
-import knossostourimg from '/src/assets/knossos-services.jpeg';
+import knossostourimg from '/src/assets/reliability-aboutus.jpg';
 import prevelitourimg from '/src/assets/preveli-services.jpg';
 import arkaditourimg from '/src/assets/arkadi-services.jpg';
-import seitanharborimg from '/src/assets/seitan-services.jpg';
+import elafonisiimg from '/src/assets/elafonisi-services.jpg';
 
 
 const services = [
@@ -82,11 +82,11 @@ const services = [
     alt: 'Arkadi Tour'
   },
   {
-    image: seitanharborimg,
-    title: 'Seitan Harbor',
-    description: 'Spend a day at the beautiful Seitan Harbor with our guided tour.',
-    features: ['Relaxing Atmosphere', 'Local Cuisine', 'Boat Trips'],
-    alt: 'Seitan Harbor'
+    image: elafonisiimg,
+    title: 'Elafonisi Tour',
+    description: 'Discover the pink sands of Elafonisi beach and its crystal-clear waters.',
+    features: ['Beach Paradise', 'Luxury Transport', 'Local Guide'],
+    alt: 'Elafonisi Tour'
   }
 ];
 </script>

@@ -6,7 +6,7 @@ const companyPhone = '+306948422070'; // Change to your business number
 const companyEmail = 'pngarva@gmail.com'; // Change to your company email
 
 const services = ref([
-  'Airport Transfer - Chania', 'Airport Transfer - Heraklion', 'Knossos Tour', 'Preveli Tour',
+  'Transportation','Airport Transfer - Chania', 'Airport Transfer - Heraklion', 'Knossos Tour', 'Preveli Tour',
   'Arkadi Tour', 'Kalypso - Plaka Tour', 'Elafonisi Tour', 'Balos Tour', 'Kournas Lake',
   'Samaria Tour', 'Chania Old Town', 'Matala - Malia Tour', 'Heraklion Tour', 'Seitan Harbor'
 ]);
@@ -18,14 +18,16 @@ const phone = ref('');
 const selectedDate = ref('');
 const selectedService = ref('');
 const guests = ref(1);
+const location = ref('');
 
 const isFormValid = computed(() => {
-  return name.value && surname.value && email.value && phone.value && selectedDate.value && selectedService.value && guests.value > 0;
+  return location.value && name.value && surname.value && email.value && phone.value && selectedDate.value && selectedService.value && guests.value > 0;
 });
 
 const submitBooking = async () => {
   try {
     const templateParams = {
+      location: location.value,
       to_email: companyEmail,
       from_name: `${name.value} ${surname.value}`,
       guest_email: email.value,
@@ -58,10 +60,11 @@ const resetForm = () => {
   selectedDate.value = '';
   selectedService.value = '';
   guests.value = 1;
+  location.value = '';
 };
 
 const openWhatsApp = () => {
-  const message = `Hello, I would like to book a ${selectedService.value} on ${selectedDate.value} for ${guests.value} people.`;
+  const message = `Hello, I would like to book a ${selectedService.value} on ${selectedDate.value} for ${guests.value} people. My name is ${name.value} ${surname.value}. My pickup location is ${location.value}.`;
   window.open(`https://wa.me/${companyPhone}?text=${encodeURIComponent(message)}`, '_blank');
 };
 </script>
@@ -89,6 +92,10 @@ const openWhatsApp = () => {
       <div>
         <label class="block text-sm font-medium text-gray-700">Date</label>
         <input v-model="selectedDate" type="date" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Pickup location:</label>
+        <input v-model="location" type="text" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
       </div>
       <div>
         <label class="block text-sm font-medium text-gray-700">Select Service</label>
