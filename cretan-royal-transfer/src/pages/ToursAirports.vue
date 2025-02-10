@@ -62,6 +62,7 @@ import 'swiper/css/autoplay';
   import matalaimg from '/src/assets/matala-malia-tours.jpg';
   import heraklionimg from '/src/assets/heraklion-tours.jpg';
   import seitanimg from '/src/assets/seitan-services.jpg';
+  import sfakiaimg from '/src/assets/sfakia-tours.jpg';
 const services = ref([
   {
       image: airportimg,
@@ -148,7 +149,7 @@ const services = ref([
       features: ['Boat Tour', 'Scenic Views', 'Relaxation & Swimming']
     },
     {
-      image: seitanimg,
+      image: sfakiaimg,
       title: 'Sfakia Tour',
       description: 'Discover the beautiful Sfakia region with its stunning beaches and traditional villages.',
       features: ['Scenic Drives', 'Local Culture', 'Beach Exploration']
