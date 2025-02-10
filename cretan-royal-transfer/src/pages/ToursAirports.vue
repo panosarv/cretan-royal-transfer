@@ -50,7 +50,7 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
   import airportimg from '/src/assets/airport-chania-services.jpg';
   import airportimg2 from '/src/assets/airport-heraklion-services.jpg';
-  import knossosimg from '/src/assets/knossos-services.jpeg';
+  import knossosimg from '/src/assets/reliability-aboutus.jpg';
   import preveliimg from '/src/assets/preveli-services.jpg';
   import arkadiimg from '/src/assets/arkadi-services.jpg';
   import kalypsoimg from '/src/assets/kalypso-tours.jpg';
