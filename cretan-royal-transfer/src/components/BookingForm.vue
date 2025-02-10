@@ -2,8 +2,8 @@
 import { ref, computed, onMounted } from 'vue';
 import emailjs from '@emailjs/browser';
 
-const companyPhone = '+306948422070'; // Change to your business number
-const companyEmail = 'pngarva@gmail.com'; // Change to your company email
+const companyPhone = '+30123123123'; // Change to your business number
+const companyEmail = 'cretanroyaltransfer@gmail.com'; // Change to your company email
 
 const services = ref([
   'Transportation','Airport Transfer - Chania', 'Airport Transfer - Heraklion', 'Knossos Tour', 'Preveli Tour',
