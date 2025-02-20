@@ -8,7 +8,7 @@ const companyEmail = 'cretanroyaltransfer@gmail.com'; // Change to your company 
 const services = ref([
   'Transportation','Airport Transfer - Chania', 'Airport Transfer - Heraklion', 'Knossos Tour', 'Preveli Tour',
   'Arkadi Tour', 'Kalypso - Plaka Tour', 'Elafonisi Tour', 'Balos Tour', 'Kournas Lake',
-  'Samaria Tour', 'Chania Old Town', 'Matala - Malia Tour', 'Heraklion Tour', 'Seitan Harbor'
+  'Samaria Tour', 'Chania Old Town', 'Matala Tour', 'Heraklion Tour', 'Seitan Harbor','Other'
 ]);
 
 const name = ref('');

@@ -132,8 +132,8 @@ const services = ref([
     },
     {
       image: matalaimg,
-      title: 'Matala - Malia Tour',
-      description: 'Discover the famous Matala caves and Malia’s vibrant atmosphere.',
+      title: 'Matala Tour',
+      description: 'Discover the famous Matala caves and vibrant atmosphere.',
       features: ['Cultural Sites', 'Beautiful Beaches', 'Guided Tour']
     },
     {
