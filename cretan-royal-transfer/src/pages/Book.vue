@@ -15,7 +15,7 @@ import BookingForm from '../components/BookingForm.vue'
         </div>
 
         <!-- Booking Form Container -->
-        <div class="relative max-w-4xl w-full bg-stone-900/80 p-8 rounded-lg shadow-lg">
+        <div class="relative max-w-4xl w-full bg-stone-900/80 p-8 rounded-lg shadow-lg mt-20">
             <div class="text-center mb-8">
                 <h2 class="text-3xl sm:text-4xl font-bold text-stone-200 mb-4">
                     Book Your Transfer

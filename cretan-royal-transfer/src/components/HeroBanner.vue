@@ -17,8 +17,8 @@
           enter-from-class="opacity-0 translate-y-6"
           enter-to-class="opacity-100 translate-y-0"
         >
-          <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-[#E5E5E5] mb-6">
-            Crete Transfer
+          <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-[#E5E5E5] mb-6 flex items-center justify-center">
+            <img src="../assets/crt-hero.png" alt="Cretan Royal Transfer" class="h-40  w-auto md:h-auto" />
           </h1>
         </Transition>
 
