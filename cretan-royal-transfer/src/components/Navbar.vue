@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-
+import crt_logo from '/src/assets/crt-logo.png';
 const isMenuOpen = ref(false);
 const route = useRoute();
 
@@ -18,7 +18,7 @@ watch(route, () => {
       <div class="flex justify-between h-16">
         <div class="flex items-center">
           <RouterLink to="/" class="text-xl font-bold text-stone-200" style="font-family: 'Poppins', sans-serif;">
-            Brand
+           <img src="/src/assets/crt-logo.png" alt="Cretan Royal Transfer Logo" class="h-20 w-auto" />
           </RouterLink>
         </div>
 

@@ -2,13 +2,13 @@
 import { ref, computed, onMounted } from 'vue';
 import emailjs from '@emailjs/browser';
 
-const companyPhone = '+30123123123'; // Change to your business number
+const companyPhone = '+306973857378'; // Change to your business number
 const companyEmail = 'cretanroyaltransfer@gmail.com'; // Change to your company email
 
 const services = ref([
   'Transportation','Airport Transfer - Chania', 'Airport Transfer - Heraklion', 'Knossos Tour', 'Preveli Tour',
   'Arkadi Tour', 'Kalypso - Plaka Tour', 'Elafonisi Tour', 'Balos Tour', 'Kournas Lake',
-  'Samaria Tour', 'Chania Old Town', 'Matala Tour', 'Heraklion Tour', 'Seitan Harbor','Other'
+  'Samaria Tour', 'Chania Old Town', 'Matala Tour', 'Heraklion Tour', 'Seitan Harbor','Phalasarna Tour','Other'
 ]);
 
 const name = ref('');

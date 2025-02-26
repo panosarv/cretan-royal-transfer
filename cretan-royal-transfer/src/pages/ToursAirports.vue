@@ -63,6 +63,7 @@ import 'swiper/css/autoplay';
   import heraklionimg from '/src/assets/heraklion-tours.jpg';
   import seitanimg from '/src/assets/seitan-services.jpg';
   import sfakiaimg from '/src/assets/sfakia-tours.jpg';
+  import phalasarnaimg from '/src/assets/phalasarna-tours.jpg';
 const services = ref([
   {
       image: airportimg,
@@ -153,6 +154,12 @@ const services = ref([
       title: 'Sfakia Tour',
       description: 'Discover the beautiful Sfakia region with its stunning beaches and traditional villages.',
       features: ['Scenic Drives', 'Local Culture', 'Beach Exploration']
+    },
+    {
+      image:phalasarnaimg,
+      title: 'Phalasarna Tour',
+      description: 'Visit the ancient ruins and beautiful beaches of Phalasarna with a guided tour.',
+      features: ['Historical Sites', 'Beach Exploration', 'Local Guide']
     }
   ]);
 
