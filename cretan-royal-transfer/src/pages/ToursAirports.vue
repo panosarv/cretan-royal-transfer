@@ -10,7 +10,7 @@
     </div>
 
     <div class="mt-12 max-w-7xl mx-auto p-2 scrollbar-hide">
-      <swiper v-if="isMobile" :slides-per-view="1" :space-between="10" :autoplay="{ delay: 3000 }" @slide-change="updateActiveIndex" class="swiper-container">
+      <swiper v-if="isMobile" :slides-per-view="1" :space-between="10" :autoplay="{ delay: 3000 }" @slide-change="updateActiveIndex" class="swiper-container" :navigation="true" :modules="[Navigation]" ref="carousel">
         <swiper-slide v-for="(service, index) in services" :key="index">
           <button @click="selectService(service)" class="bg-white rounded-lg shadow-lg overflow-hidden border border-stone-200 hover:shadow-xl transition flex items-center justify-center p-4 text-center min-w-[180px] h-24 w-full">
             <h3 class="text-md font-semibold text-stone-900 whitespace-normal break-words">{{ service.title }}</h3>
@@ -20,6 +20,7 @@
       <div class="pagination-dots" v-if="isMobile">
         <span v-for="(service, index) in services" :key="index" class="dot" :class="{ active: index === activeIndex }"></span>
       </div>
+     
       <div v-else class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         <button v-for="(service, index) in services" :key="index" @click="selectService(service)" class="bg-white rounded-lg shadow-lg overflow-hidden border border-stone-200 hover:shadow-xl transition flex items-center justify-center p-4 text-center w-full h-24" :class="{'bg-gray-300': selectedService === service}">
           <h3 class="text-md font-semibold text-stone-900 whitespace-normal break-words">{{ service.title }}</h3>
@@ -46,24 +47,27 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation } from 'swiper/modules'
 import 'swiper/css';
 import 'swiper/css/autoplay';
-  import airportimg from '/src/assets/airport-chania-services.jpg';
-  import airportimg2 from '/src/assets/airport-heraklion-services.jpg';
-  import knossosimg from '/src/assets/reliability-aboutus.jpg';
-  import preveliimg from '/src/assets/preveli-services.jpg';
-  import arkadiimg from '/src/assets/arkadi-services.jpg';
-  import kalypsoimg from '/src/assets/kalypso-tours.jpg';
-  import elafonisiimg from '/src/assets/elafonisi-tours.jpeg';
-  import balosimg from '/src/assets/balos-tours.jpg';
-  import kournasimg from '/src/assets/kournas-tours.jpg';
-  import samariaimg from '/src/assets/samaria-tours.jpg';
-  import chaniaimg from '/src/assets/chania-tours.jpg';
-  import matalaimg from '/src/assets/matala-malia-tours.jpg';
-  import heraklionimg from '/src/assets/heraklion-tours.jpg';
-  import seitanimg from '/src/assets/seitan-services.jpg';
-  import sfakiaimg from '/src/assets/sfakia-tours.jpg';
-  import phalasarnaimg from '/src/assets/phalasarna-tours.jpg';
+import 'swiper/css/navigation';
+import airportimg from '/src/assets/airport-chania-services.jpg';
+import airportimg2 from '/src/assets/airport-heraklion-services.jpg';
+import knossosimg from '/src/assets/reliability-aboutus.jpg';
+import preveliimg from '/src/assets/preveli-services.jpg';
+import arkadiimg from '/src/assets/arkadi-services.jpg';
+import kalypsoimg from '/src/assets/kalypso-tours.jpg';
+import elafonisiimg from '/src/assets/elafonisi-tours.jpeg';
+import balosimg from '/src/assets/balos-tours.jpg';
+import kournasimg from '/src/assets/kournas-tours.jpg';
+import samariaimg from '/src/assets/samaria-tours.jpg';
+import chaniaimg from '/src/assets/chania-tours.jpg';
+import matalaimg from '/src/assets/matala-malia-tours.jpg';
+import heraklionimg from '/src/assets/heraklion-tours.jpg';
+import seitanimg from '/src/assets/seitan-services.jpg';
+import sfakiaimg from '/src/assets/sfakia-tours.jpg';
+import phalasarnaimg from '/src/assets/phalasarna-tours.jpg';
+const carousel = ref(null);
 const services = ref([
   {
       image: airportimg,
@@ -207,4 +211,17 @@ onMounted(() => {
 .dot.active {
   background-color: #333;
 }
+.swiper-button-next, .swiper-button-prev {
+  color: #333;
+}
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  color: #000;
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 20px;
+}
+.swiper-pagination-bullet {
+  background: #333;
+} 
+
 </style>
