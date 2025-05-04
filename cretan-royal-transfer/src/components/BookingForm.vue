@@ -19,6 +19,7 @@ const selectedDate = ref('');
 const selectedService = ref('');
 const guests = ref(1);
 const location = ref('');
+const additionalInfo = ref('');
 
 const isFormValid = computed(() => {
   return location.value && name.value && surname.value && email.value && phone.value && selectedDate.value && selectedService.value && guests.value > 0;
