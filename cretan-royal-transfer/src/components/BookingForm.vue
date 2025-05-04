@@ -35,7 +35,7 @@ const submitBooking = async () => {
       booking_date: selectedDate.value,
       service: selectedService.value,
       guests: guests.value,
-      additional_info: additional_info.value,
+      additionalInfo: additionalInfo.value,
     };
 
     await emailjs.send(
@@ -62,7 +62,7 @@ const resetForm = () => {
   selectedService.value = '';
   guests.value = 1;
   location.value = '';
-  additional_info.value = '';
+  additionalInfo.value = '';
 };
 
 const openWhatsApp = () => {
