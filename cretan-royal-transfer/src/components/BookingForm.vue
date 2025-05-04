@@ -35,6 +35,7 @@ const submitBooking = async () => {
       booking_date: selectedDate.value,
       service: selectedService.value,
       guests: guests.value,
+      additional_info: additional_info.value,
     };
 
     await emailjs.send(
@@ -61,6 +62,7 @@ const resetForm = () => {
   selectedService.value = '';
   guests.value = 1;
   location.value = '';
+  additional_info.value = '';
 };
 
 const openWhatsApp = () => {
@@ -116,6 +118,19 @@ const openWhatsApp = () => {
         <label class="block text-sm font-medium text-gray-700">Number of Guests</label>
         <input v-model="guests" name="number of people" type="number" min="1" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
       </div>
+      <div class="md:col-span-2">
+         <label class="block text-sm font-medium text-gray-700" for="additionalInfo">
+           Additional Information
+         </label>
+         <textarea
+           v-model="additionalInfo"
+           name="additionalInfo"
+           id="additionalInfo"
+           rows="4"
+           placeholder="Any special requests, flight details, meeting points, etc."
+           class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+         ></textarea>
+       </div>
     </div>
 
     <div class="mt-6 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
