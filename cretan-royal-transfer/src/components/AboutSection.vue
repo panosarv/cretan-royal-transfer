@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto text-center">
       <Transition appear enter-active-class="transition duration-1000" enter-from-class="opacity-0 translate-y-6" enter-to-class="opacity-100 translate-y-0">
         <h2 class="text-3xl font-extrabold text-[#E5E5E5] tracking-tight sm:text-4xl mb-16">
-          About Cretan Royal Transfer
+          {{ t('message.about_us_title') }}
         </h2>
       </Transition>
     </div>
@@ -49,19 +49,21 @@ import reliabilityimg from '/src/assets/reliability-aboutus.jpg';
 import safetyimg from '/src/assets/safety-aboutus.jpg';
 import airportimg from '/src/assets/airport-aboutus.jpg';
 import leasureimg from '/src/assets/leasure-aboutus.jpg';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const aboutSection = ref(null);
 const isVisible = ref(false);
 const index = ref(0);
 const totalSlides = 4;
 
-const features = [
-  { icon: caricon, title: 'Reliable Transfers', description: 'We provide efficient and comfortable transfers across Crete with professional drivers ensuring a hassle-free experience.', alt: 'Car Icon' },
-  { icon: shieldicon, title: 'Safety First', description: 'Our top priority is your safety. We maintain our vehicles to the highest standards and provide professional drivers for a secure journey.', alt: 'Shield Icon' },
-  { icon: airporticon, title: 'Airport Transfers', description: 'We offer punctual and stress-free airport transfers, ensuring you reach your destination on time and in comfort.', alt: 'Airport Icon' },
-  { icon: mapicon, title: 'Leisure Trips', description: 'Explore Crete in style with our leisure trip services. Discover the island\'s beauty with our luxurious and comfortable transport options.', alt: 'Map Icon' }
-];
+const features = computed(() => [
+  { icon: caricon, title: t('message.reliable_transfers_title'), description: t('message.reliable_transfers_description'), alt: 'Car Icon' },
+  { icon: shieldicon, title: t('message.safety_first_title'), description: t('message.safety_first_description'), alt: 'Shield Icon' },
+  { icon: airporticon, title: t('message.airport_transfers_title'), description: t('message.airport_transfers_description'), alt: 'Airport Icon' },
+  { icon: mapicon, title: t('message.leisure_trips_title'), description: t('message.leisure_trips_description'), alt: 'Map Icon' }
+]);
 
 const images = [
   reliabilityimg,

@@ -1,7 +1,9 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted,computed  } from 'vue';
 import { useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 
+const { locale, t } = useI18n();
 const isMenuOpen = ref(false);
 const route = useRoute();
 const isAtTop = ref(true);
@@ -23,16 +25,20 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
 });
+
+function changeLanguage(lang) {
+  locale.value = lang;
+}
 </script>
 
 <template>
   <nav 
     class="fixed w-full z-50 transition-all duration-500 backdrop-blur-sm"
-    :class="{ 'bg-stone-900/90 shadow-md text-white': !isAtTop || isWhitePage, 'bg-transparent text-black': isAtTop && isWhitePage }"
+    :class="{ 'bg-stone-900/90 shadow-md text-white': !isAtTop, 'bg-transparent text-black': isAtTop && isWhiteBackgroundPage }"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16 items-center">
-        <RouterLink to="/" class="text-xl font-bold text-stone-200":class="{'text-black':isAtTop && isWhitePage}" style="font-family: 'Poppins', sans-serif;">
+        <RouterLink to="/" class="text-xl font-bold text-stone-200":class="{'text-black':isAtTop && isWhiteBackgroundPage}" style="font-family: 'Poppins', sans-serif;">
           <img src="/src/assets/crt-logo.png" alt="Cretan Royal Transfer Logo" class="h-20 w-auto transition-all duration-300" />
         </RouterLink>
 
@@ -42,17 +48,25 @@ onUnmounted(() => {
             to="/"
             class="hover:text-white transition"
             :class="{ 'text-white': !isAtTop || !isWhiteBackgroundPage, 'text-black': isAtTop && isWhiteBackgroundPage }"
-          >Home</RouterLink>
+          >{{ t('message.home') }}</RouterLink>
           <RouterLink
             to="/tours-airports"
             class="hover:text-white transition"
             :class="{ 'text-white': !isAtTop || !isWhiteBackgroundPage, 'text-black': isAtTop && isWhiteBackgroundPage }"
-          >Tours-Airports</RouterLink>
+          >{{ t('message.tours_airports') }}</RouterLink>
           <RouterLink
             to="/book"
             class="hover:text-white transition"
             :class="{ 'text-white': !isAtTop || !isWhiteBackgroundPage, 'text-black': isAtTop && isWhiteBackgroundPage }"
-          >Book Us</RouterLink>
+          >{{ t('message.book_us') }}</RouterLink>
+          <div class="relative">
+            <select v-model="locale" @change="changeLanguage($event.target.value)" class="cursor-pointer bg-transparent" :class="{ 'text-white': !isAtTop || !isWhiteBackgroundPage, 'text-black': isAtTop && isWhiteBackgroundPage }">
+              <option value="en" class="bg-stone-900 text-white">EN</option>
+              <option value="gr" class="bg-stone-900 text-white">GR</option>
+              <option value="de" class="bg-stone-900 text-white">DE</option>
+              <option value="fr" class="bg-stone-900 text-white">FR</option>
+            </select>
+          </div>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -73,9 +87,17 @@ onUnmounted(() => {
     <transition name="slide-fade">
       <div v-if="isMenuOpen" class="md:hidden bg-stone-900/95 backdrop-blur-md">
         <div class="px-4 pt-2 pb-3 space-y-2">
-          <RouterLink to="/" class="block text-stone-200 hover:text-white transition py-2">Home</RouterLink>
-          <RouterLink to="/tours-airports" class="block text-stone-200 hover:text-white transition py-2">Tours-Airports</RouterLink>
-          <RouterLink to="/book" class="block text-stone-200 hover:text-white transition py-2">Book Us</RouterLink>
+          <RouterLink to="/" class="block text-stone-200 hover:text-white transition py-2">{{ t('message.home') }}</RouterLink>
+          <RouterLink to="/tours-airports" class="block text-stone-200 hover:text-white transition py-2">{{ t('message.tours_airports') }}</RouterLink>
+          <RouterLink to="/book" class="block text-stone-200 hover:text-white transition py-2">{{ t('message.book_us') }}</RouterLink>
+          <div class="relative">
+            <select v-model="locale" @change="changeLanguage($event.target.value)" class="cursor-pointer bg-transparent text-white" >
+              <option value="en" class="bg-stone-900 text-white">EN</option>
+              <option value="gr" class="bg-stone-900 text-white">GR</option>
+              <option value="de" class="bg-stone-900 text-white">DE</option>
+              <option value="fr" class="bg-stone-900 text-white">FR</option>
+            </select>
+          </div>
         </div>
       </div>
     </transition>

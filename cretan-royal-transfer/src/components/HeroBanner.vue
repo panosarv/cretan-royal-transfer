@@ -29,7 +29,7 @@
           enter-to-class="opacity-100 translate-y-0"
         >
           <p class="text-lg sm:text-xl md:text-2xl text-[#E5E5E5] mb-8 text-justify md:text-justify">
-            Cretan Royal Transfer is dedicated to providing a seamless and comfortable travel experience across Crete. With a focus on security, reliability, and customer satisfaction, our professional drivers ensure a stress-free journey. Whether you're heading to the airport, a hotel, or a scenic destination, you can trust us for a premium transfer service tailored to your needs.
+            {{ t('message.hero_banner_subtitle') }}
           </p>
         </Transition>
 
@@ -44,7 +44,7 @@
             <RouterLink to="/book">
             <button 
               class="bg-[#D8A444] text-[#2C2C2C] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#B4952E] transition-colors w-full sm:w-auto">
-              Book Us
+              {{ t('message.book_us') }}
             </button>
           </RouterLink>
           </div>
@@ -56,6 +56,10 @@
 
 <script setup>
 import { RouterLink } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
 const scrollToBooking = () => {
   document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
 };

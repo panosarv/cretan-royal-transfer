@@ -3,10 +3,10 @@
     <div class="max-w-7xl mx-auto">
       <div class="text-center">
         <h2 class="text-3xl font-extrabold text-stone-900 sm:text-4xl">
-          Our Premium Transport Services
+          {{ t('message.services_title') }}
         </h2>
         <p class="mt-4 text-lg text-stone-600">
-          Choose from our top transport services designed for comfort and reliability.
+          {{ t('message.services_subtitle') }}
         </p>
       </div>
 
@@ -24,7 +24,7 @@
             </ul>
             <RouterLink to="/book">
               <button class="w-full bg-stone-800 text-white py-2 rounded-md hover:bg-stone-900 transition-colors">
-                Book Now
+                {{ t('message.book_now') }}
               </button>
             </RouterLink>
           </div>
@@ -35,7 +35,7 @@
       <div class="mt-12 text-center">
         <RouterLink to="/tours-airports">
           <button class="bg-stone-800 text-white py-3 px-6 rounded-md hover:bg-stone-900 transition-colors text-lg font-semibold">
-            View More
+            {{ t('message.view_more') }}
           </button>
         </RouterLink>
       </div>
@@ -45,7 +45,8 @@
 
 <script setup>
 import { RouterLink, useRoute } from 'vue-router';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import aiportchaniaimg from '/src/assets/airport-chania-services.jpg';
 import airportheraklionimg from '/src/assets/airport-heraklion-services.jpg';
 import knossostourimg from '/src/assets/reliability-aboutus.jpg';
@@ -53,49 +54,50 @@ import prevelitourimg from '/src/assets/preveli-services.jpg';
 import arkaditourimg from '/src/assets/arkadi-services.jpg';
 import elafonisiimg from '/src/assets/elafonisi-services.jpg';
 
+const { t } = useI18n();
 
-const services = [
+const services = computed(() => [
   {
     image: aiportchaniaimg,
-    title: 'Airport Transfer - Chania',
-    description: 'Reliable and comfortable transfers from Chania Airport to your destination.',
-    features: ['24/7 Availability', 'Luxury Vehicles', 'Meet & Greet Service'],
+    title: t('message.airport_transfer_chania_title'),
+    description: t('message.airport_transfer_chania_description'),
+    features: [t('message.airport_transfer_chania_feature1'), t('message.airport_transfer_chania_feature2'), t('message.airport_transfer_chania_feature3')],
     alt: 'Airport Transfer Chania'
   },
   {
     image: airportheraklionimg,
-    title: 'Airport Transfer - Heraklion',
-    description: 'Efficient transfers from Heraklion Airport to any location in Crete.',
-    features: ['Professional Drivers', 'VIP Service', 'Fast & Safe'],
+    title: t('message.airport_transfer_heraklion_title'),
+    description: t('message.airport_transfer_heraklion_description'),
+    features: [t('message.airport_transfer_heraklion_feature1'), t('message.airport_transfer_heraklion_feature2'), t('message.airport_transfer_heraklion_feature3')],
     alt: 'Airport Transfer Heraklion'
   },
   {
     image: knossostourimg,
-    title: 'Knossos Tour',
-    description: 'Discover the ancient ruins of Knossos with a guided tour and transport.',
-    features: ['Historical Landmarks', 'Expert Guide', 'Comfortable Transport'],
+    title: t('message.knossos_tour_title'),
+    description: t('message.knossos_tour_description'),
+    features: [t('message.knossos_tour_feature1'), t('message.knossos_tour_feature2'), t('message.knossos_tour_feature3')],
     alt: 'Knossos Tour'
   },
   {
     image: prevelitourimg,
-    title: 'Preveli Tour',
-    description: 'Visit the stunning Preveli beach and monastery with our guided tour.',
-    features: ['Scenic Views', 'Luxury Transport', 'Local Guide'],
+    title: t('message.preveli_tour_title'),
+    description: t('message.preveli_tour_description'),
+    features: [t('message.preveli_tour_feature1'), t('message.preveli_tour_feature2'), t('message.preveli_tour_feature3')],
     alt: 'Preveli Tour'
   },
   {
     image: arkaditourimg,
-    title: 'Arkadi Tour',
-    description: 'Explore the historic Arkadi Monastery and its beautiful surroundings.',
-    features: ['Cultural Experience', 'Private or Group Tours', 'Hotel Pickup'],
+    title: t('message.arkadi_tour_title'),
+    description: t('message.arkadi_tour_description'),
+    features: [t('message.arkadi_tour_feature1'), t('message.arkadi_tour_feature2'), t('message.arkadi_tour_feature3')],
     alt: 'Arkadi Tour'
   },
   {
     image: elafonisiimg,
-    title: 'Elafonisi Tour',
-    description: 'Discover the pink sands of Elafonisi beach and its crystal-clear waters.',
-    features: ['Beach Paradise', 'Luxury Transport', 'Local Guide'],
+    title: t('message.elafonisi_tour_title'),
+    description: t('message.elafonisi_tour_description'),
+    features: [t('message.elafonisi_tour_feature1'), t('message.elafonisi_tour_feature2'), t('message.elafonisi_tour_feature3')],
     alt: 'Elafonisi Tour'
   }
-];
+]);
 </script>

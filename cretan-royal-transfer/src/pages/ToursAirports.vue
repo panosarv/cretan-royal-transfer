@@ -2,10 +2,10 @@
   <div class="py-16 px-4 sm:px-6 lg:px-8 bg-stone-50" id="tours-airports">
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-3xl font-extrabold text-stone-900 sm:text-4xl">
-        Explore Our Services & Tours
+        {{ t('message.tours_airports_title') }}
       </h2>
       <p class="mt-4 text-lg text-stone-600">
-        Select a service or tour to view more details.
+        {{ t('message.tours_airports_subtitle') }}
       </p>
     </div>
 
@@ -45,12 +45,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation } from 'swiper/modules'
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
+import { useI18n } from 'vue-i18n';
+
 import airportimg from '/src/assets/airport-chania-services.jpg';
 import airportimg2 from '/src/assets/airport-heraklion-services.jpg';
 import knossosimg from '/src/assets/reliability-aboutus.jpg';
@@ -67,103 +69,106 @@ import heraklionimg from '/src/assets/heraklion-tours.jpg';
 import seitanimg from '/src/assets/seitan-services.jpg';
 import sfakiaimg from '/src/assets/sfakia-tours.jpg';
 import phalasarnaimg from '/src/assets/phalasarna-tours.jpg';
+
+const { t } = useI18n();
+
 const carousel = ref(null);
-const services = ref([
+const services = computed(() => [
   {
       image: airportimg,
-      title: 'Airport Transfer - Chania',
-      description: 'Reliable and comfortable transfers from Chania Airport to your destination.',
-      features: ['24/7 Availability', 'Luxury Vehicles', 'Meet & Greet Service']
+      title: t('message.airport_transfer_chania_title'),
+      description: t('message.airport_transfer_chania_description'),
+      features: [t('message.airport_transfer_chania_feature1'), t('message.airport_transfer_chania_feature2'), t('message.airport_transfer_chania_feature3')]
     },
     {
       image: airportimg2,
-      title: 'Airport Transfer - Heraklion',
-      description: 'Efficient transfers from Heraklion Airport to any location in Crete.',
-      features: ['Professional Drivers', 'VIP Service', 'Fast & Safe']
+      title: t('message.airport_transfer_heraklion_title'),
+      description: t('message.airport_transfer_heraklion_description'),
+      features: [t('message.airport_transfer_heraklion_feature1'), t('message.airport_transfer_heraklion_feature2'), t('message.airport_transfer_heraklion_feature3')]
     },
     {
       image: knossosimg,
-      title: 'Knossos Tour',
-      description: 'Discover the ancient ruins of Knossos with a guided tour and transport.',
-      features: ['Historical Landmarks', 'Expert Guide', 'Comfortable Transport']
+      title: t('message.knossos_tour_title'),
+      description: t('message.knossos_tour_description'),
+      features: [t('message.knossos_tour_feature1'), t('message.knossos_tour_feature2'), t('message.knossos_tour_feature3')]
     },
     {
       image: preveliimg,
-      title: 'Preveli Tour',
-      description: 'Visit the stunning Preveli beach and monastery with our guided tour.',
-      features: ['Scenic Views', 'Luxury Transport', 'Local Guide']
+      title: t('message.preveli_tour_title'),
+      description: t('message.preveli_tour_description'),
+      features: [t('message.preveli_tour_feature1'), t('message.preveli_tour_feature2'), t('message.preveli_tour_feature3')]
     },
     {
       image: arkadiimg,
-      title: 'Arkadi Tour',
-      description: 'Explore the historic Arkadi Monastery and its beautiful surroundings.',
-      features: ['Cultural Experience', 'Private or Group Tours', 'Hotel Pickup']
+      title: t('message.arkadi_tour_title'),
+      description: t('message.arkadi_tour_description'),
+      features: [t('message.arkadi_tour_feature1'), t('message.arkadi_tour_feature2'), t('message.arkadi_tour_feature3')]
     },
     {
       image: kalypsoimg,
-      title: 'Kalypso - Plakia Tour',
-      description: 'Experience the beautiful Kalypso and Plakia regions with stunning sea views.',
-      features: ['Scenic Drives', 'Luxury Vehicles', 'Guided Experience']
+      title: t('message.kalypso_plakia_tour_title'),
+      description: t('message.kalypso_plakia_tour_description'),
+      features: [t('message.kalypso_plakia_tour_feature1'), t('message.kalypso_plakia_tour_feature2'), t('message.kalypso_plakia_tour_feature3')]
     },
     {
       image: elafonisiimg,
-      title: 'Elafonisi Tour',
-      description: 'Visit the breathtaking pink sand beaches of Elafonisi with expert guides.',
-      features: ['Beach Exploration', 'Private Transfers', 'Nature Experience']
+      title: t('message.elafonisi_tour_title'),
+      description: t('message.elafonisi_tour_description'),
+      features: [t('message.elafonisi_tour_feature1'), t('message.elafonisi_tour_feature2'), t('message.elafonisi_tour_feature3')]
     },
     {
       image: balosimg,
-      title: 'Balos Tour',
-      description: 'Enjoy an unforgettable trip to the iconic Balos Lagoon with comfortable transport.',
-      features: ['Boat Transfer', 'Luxury Transport', 'Private Tour Options']
+      title: t('message.balos_tour_title'),
+      description: t('message.balos_tour_description'),
+      features: [t('message.balos_tour_feature1'), t('message.balos_tour_feature2'), t('message.balos_tour_feature3')]
     },
     {
       image: kournasimg,
-      title: 'Kournas Lake',
-      description: 'Discover the beauty of Kournas Lake, Crete’s only natural freshwater lake.',
-      features: ['Relaxing Atmosphere', 'Nature Walks', 'Canoeing Option']
+      title: t('message.kournas_lake_tour_title'),
+      description: t('message.kournas_lake_tour_description'),
+      features: [t('message.kournas_lake_tour_feature1'), t('message.kournas_lake_tour_feature2'), t('message.kournas_lake_tour_feature3')]
     },
     {
       image: samariaimg,
-      title: 'Samaria Tour',
-      description: 'Hike through the famous Samaria Gorge, Europe’s longest and most scenic gorge.',
-      features: ['Guided Hiking', 'Stunning Views', 'Wildlife Spotting']
+      title: t('message.samaria_tour_title'),
+      description: t('message.samaria_tour_description'),
+      features: [t('message.samaria_tour_feature1'), t('message.samaria_tour_feature2'), t('message.samaria_tour_feature3')]
     },
     {
       image: chaniaimg,
-      title: 'Chania Old Town',
-      description: 'Explore the charming alleys, Venetian harbor, and cultural heritage of Chania Old Town.',
-      features: ['Historical Landmarks', 'Local Guides', 'Shopping & Dining']
+      title: t('message.chania_old_town_tour_title'),
+      description: t('message.chania_old_town_tour_description'),
+      features: [t('message.chania_old_town_tour_feature1'), t('message.chania_old_town_tour_feature2'), t('message.chania_old_town_tour_feature3')]
     },
     {
       image: matalaimg,
-      title: 'Matala Tour',
-      description: 'Discover the famous Matala caves and vibrant atmosphere.',
-      features: ['Cultural Sites', 'Beautiful Beaches', 'Guided Tour']
+      title: t('message.matala_tour_title'),
+      description: t('message.matala_tour_description'),
+      features: [t('message.matala_tour_feature1'), t('message.matala_tour_feature2'), t('message.matala_tour_feature3')]
     },
     {
       image: heraklionimg,
-      title: 'Heraklion Tour',
-      description: 'Visit the capital of Crete, full of history, culture, and vibrant city life.',
-      features: ['Archaeological Museum', 'City Exploration', 'Cretan Cuisine']
+      title: t('message.heraklion_tour_title'),
+      description: t('message.heraklion_tour_description'),
+      features: [t('message.heraklion_tour_feature1'), t('message.heraklion_tour_feature2'), t('message.heraklion_tour_feature3')]
     },
     {
       image: seitanimg,
-      title: 'Seitan Harbor',
-      description: 'Experience the breathtaking Seitan Harbor with its stunning blue waters and rocky formations.',
-      features: ['Boat Tour', 'Scenic Views', 'Relaxation & Swimming']
+      title: t('message.seitan_harbor_tour_title'),
+      description: t('message.seitan_harbor_tour_description'),
+      features: [t('message.seitan_harbor_tour_feature1'), t('message.seitan_harbor_tour_feature2'), t('message.seitan_harbor_tour_feature3')]
     },
     {
       image: sfakiaimg,
-      title: 'Sfakia Tour',
-      description: 'Discover the beautiful Sfakia region with its stunning beaches and traditional villages.',
-      features: ['Scenic Drives', 'Local Culture', 'Beach Exploration']
+      title: t('message.sfakia_tour_title'),
+      description: t('message.sfakia_tour_description'),
+      features: [t('message.sfakia_tour_feature1'), t('message.sfakia_tour_feature2'), t('message.sfakia_tour_feature3')]
     },
     {
       image:phalasarnaimg,
-      title: 'Phalasarna Tour',
-      description: 'Visit the ancient ruins and beautiful beaches of Phalasarna with a guided tour.',
-      features: ['Historical Sites', 'Beach Exploration', 'Local Guide']
+      title: t('message.phalasarna_tour_title'),
+      description: t('message.phalasarna_tour_description'),
+      features: [t('message.phalasarna_tour_feature1'), t('message.phalasarna_tour_feature2'), t('message.phalasarna_tour_feature3')]
     }
   ]);
 
@@ -225,3 +230,4 @@ onMounted(() => {
 } 
 
 </style>
+

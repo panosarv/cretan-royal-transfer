@@ -1,6 +1,9 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import emailjs from '@emailjs/browser';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const companyPhone = '+306973857378'; // Change to your business number
 const companyEmail = 'cretanroyaltransfer@gmail.com'; // Change to your company email
@@ -82,62 +85,62 @@ const openWhatsApp = () => {
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_replyto" value="{{ email }}">
 
-    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Book a Service</h2>
+    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">{{ t('message.booking_form_title') }}</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <label class="block text-sm font-medium text-gray-700">First Name</label>
+        <label class="block text-sm font-medium text-gray-700">{{ t('message.first_name') }}</label>
         <input v-model="name" name="name" type="text" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700">Surname</label>
+        <label class="block text-sm font-medium text-gray-700">{{ t('message.surname') }}</label>
         <input v-model="surname" name="surname" type="text" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <label class="block text-sm font-medium text-gray-700">{{ t('message.email') }}</label>
         <input v-model="email" name="email" type="email" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700">Phone (WhatsApp)</label>
+        <label class="block text-sm font-medium text-gray-700">{{ t('message.phone') }}</label>
         <input v-model="phone" name="phone" type="tel" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700">Date</label>
+        <label class="block text-sm font-medium text-gray-700">{{ t('message.date') }}</label>
         <input v-model="selectedDate" name="date" type="date" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700">Pickup location:</label>
+        <label class="block text-sm font-medium text-gray-700">{{ t('message.pickup_location') }}</label>
         <input v-model="location" name="pickup location" type="text" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700">Select Service</label>
+        <label class="block text-sm font-medium text-gray-700">{{ t('message.select_service') }}</label>
         <select v-model="selectedService" name="service" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-          <option value="">Choose a Service</option>
+          <option value="">{{ t('message.choose_service') }}</option>
           <option v-for="service in services" :key="service" :value="service">{{ service }}</option>
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700">Number of Guests</label>
+        <label class="block text-sm font-medium text-gray-700">{{ t('message.number_of_guests') }}</label>
         <input v-model="guests" name="number of people" type="number" min="1" required class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
       </div>
       <div class="md:col-span-2">
          <label class="block text-sm font-medium text-gray-700" for="additionalInfo">
-           Additional Information
+           {{ t('message.additional_information') }}
          </label>
          <textarea
            v-model="additionalInfo"
            name="additionalInfo"
            id="additionalInfo"
            rows="4"
-           placeholder="Any special requests, flight details, meeting points, etc."
+           :placeholder="t('message.additional_information_placeholder')"
            class="mt-2 block w-full p-3 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
          ></textarea>
        </div>
     </div>
 
     <div class="mt-6 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-      <button type="submit" :disabled="!isFormValid" class="w-full md:w-1/2 bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition">Send Email</button>
-      <button @click="openWhatsApp" class="w-full md:w-1/2 bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 transition">Message on WhatsApp</button>
-      <a :href="`tel:${companyPhone}`" class="w-full md:w-1/2 bg-yellow-500 text-white py-3 px-4 rounded-md hover:bg-yellow-600 text-center transition">Call Now</a>
+      <button type="submit" :disabled="!isFormValid" class="w-full md:w-1/2 bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition">{{ t('message.send_email') }}</button>
+      <button @click="openWhatsApp" class="w-full md:w-1/2 bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 transition">{{ t('message.message_on_whatsapp') }}</button>
+      <a :href="`tel:${companyPhone}`" class="w-full md:w-1/2 bg-yellow-500 text-white py-3 px-4 rounded-md hover:bg-yellow-600 text-center transition">{{ t('message.call_now') }}</a>
     </div>
   </form>
   </div>
