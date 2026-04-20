@@ -6,7 +6,9 @@ const booking = useBookingStore()
 
 const transferLocations = [
   'Heraklion Airport',
+  'Heraklion Port',
   'Chania Airport',
+  'Chania Port',
   'Rethymno',
   'Bali',
   'Panormo',
