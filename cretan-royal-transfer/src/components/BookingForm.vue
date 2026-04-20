@@ -1,6 +1,5 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import emailjs from '@emailjs/browser';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -28,33 +27,8 @@ const isFormValid = computed(() => {
   return location.value && name.value && surname.value && email.value && phone.value && selectedDate.value && selectedService.value && guests.value > 0;
 });
 
-const submitBooking = async () => {
-  try {
-    const templateParams = {
-      location: location.value,
-      to_email: companyEmail,
-      from_name: `${name.value} ${surname.value}`,
-      guest_email: email.value,
-      guest_phone: phone.value,
-      booking_date: selectedDate.value,
-      service: selectedService.value,
-      guests: guests.value,
-      additionalInfo: additionalInfo.value,
-    };
-
-    await emailjs.send(
-      'YOUR_SERVICE_ID',
-      'YOUR_TEMPLATE_ID',
-      templateParams,
-      'YOUR_PUBLIC_KEY'
-    );
-
-    alert('Booking request sent successfully! We will contact you shortly.');
-    resetForm();
-  } catch (error) {
-    console.error('Error sending booking request:', error);
-    alert('There was an error sending your request. Please try again.');
-  }
+const submitBooking = () => {
+  // This component is no longer used; BookingWizard is used instead
 };
 
 const resetForm = () => {
