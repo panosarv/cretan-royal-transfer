@@ -30,6 +30,19 @@ const booking = useBookingStore()
       <input type="hidden" name="booster_seats" :value="booking.boosterSeats" />
       <input type="hidden" name="price" :value="booking.hasPrice ? `€${booking.price}` : 'To be confirmed'" />
 
+      <!-- Precise pickup location -->
+      <input type="hidden" name="pickup_address" :value="booking.pickupText" />
+      <input type="hidden" name="pickup_lat" :value="booking.pickupLatLng?.lat ?? ''" />
+      <input type="hidden" name="pickup_lng" :value="booking.pickupLatLng?.lng ?? ''" />
+
+      <!-- Precise dropoff location -->
+      <input type="hidden" name="dropoff_address" :value="booking.dropoffText" />
+      <input type="hidden" name="dropoff_lat" :value="booking.dropoffLatLng?.lat ?? ''" />
+      <input type="hidden" name="dropoff_lng" :value="booking.dropoffLatLng?.lng ?? ''" />
+
+      <!-- Passenger IDs (comma-separated, blanks filtered out) -->
+      <input type="hidden" name="passenger_ids" :value="booking.passengerIds.filter(Boolean).join(', ')" />
+
       <!-- Visible fields -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
