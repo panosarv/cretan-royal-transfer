@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useBookingStore } from '@/stores/booking'
+import LocationPicker from './LocationPicker.vue'
 
 const booking = useBookingStore()
 
@@ -69,15 +70,13 @@ const canContinue = computed(() => {
             <option v-for="loc in transferLocations" :key="loc" :value="loc">{{ loc }}</option>
           </select>
         </div>
-        <div>
-          <label class="block text-sm font-medium text-stone-300 mb-1">Pickup Details (optional)</label>
-          <input
-            v-model="booking.pickupDetails"
-            type="text"
-            placeholder="Hotel name, address, terminal..."
-            class="w-full p-3 rounded-lg bg-stone-800 border border-stone-600 text-stone-100 placeholder-stone-500 focus:border-[#D8A444] focus:outline-none"
-          />
-        </div>
+        <LocationPicker
+          label="Precise Pickup Address (optional)"
+          :text="booking.pickupText"
+          :latlng="booking.pickupLatLng"
+          @update:text="booking.pickupText = $event"
+          @update:latlng="booking.pickupLatLng = $event"
+        />
         <div>
           <label class="block text-sm font-medium text-stone-300 mb-1">Drop-off Location</label>
           <select
@@ -88,15 +87,13 @@ const canContinue = computed(() => {
             <option v-for="loc in transferLocations" :key="loc" :value="loc">{{ loc }}</option>
           </select>
         </div>
-        <div>
-          <label class="block text-sm font-medium text-stone-300 mb-1">Drop-off Details (optional)</label>
-          <input
-            v-model="booking.dropoffDetails"
-            type="text"
-            placeholder="Hotel name, address, terminal..."
-            class="w-full p-3 rounded-lg bg-stone-800 border border-stone-600 text-stone-100 placeholder-stone-500 focus:border-[#D8A444] focus:outline-none"
-          />
-        </div>
+        <LocationPicker
+          label="Precise Dropoff Address (optional)"
+          :text="booking.dropoffText"
+          :latlng="booking.dropoffLatLng"
+          @update:text="booking.dropoffText = $event"
+          @update:latlng="booking.dropoffLatLng = $event"
+        />
       </div>
     </template>
 
