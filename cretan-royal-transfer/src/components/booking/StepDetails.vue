@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useBookingStore } from '@/stores/booking'
 
 const booking = useBookingStore()
@@ -12,6 +12,10 @@ const handleContinue = () => {
   booking.calculatePrice()
   booking.nextStep()
 }
+
+watch(() => booking.passengers, (newCount) => {
+  booking.passengerIds = booking.passengerIds.slice(0, newCount)
+})
 </script>
 
 <template>
@@ -50,6 +54,25 @@ const handleContinue = () => {
           min="1"
           max="14"
           class="w-full p-3 rounded-lg bg-stone-800 border border-stone-600 text-stone-100 focus:border-[#D8A444] focus:outline-none"
+        />
+      </div>
+
+      <!-- Per-passenger passport / ID fields -->
+      <div
+        v-for="n in booking.passengers"
+        :key="n"
+        class="flex flex-col gap-1"
+      >
+        <label class="block text-sm font-medium text-stone-300 mb-1">
+          Passenger {{ n }} — Passport / ID number
+          <span class="text-stone-500 font-normal">(optional)</span>
+        </label>
+        <input
+          :value="booking.passengerIds[n - 1] || ''"
+          @input="booking.setPassengerId(n - 1, $event.target.value)"
+          type="text"
+          placeholder="e.g. AB123456"
+          class="w-full p-3 rounded-lg bg-stone-800 border border-stone-600 text-stone-100 placeholder-stone-500 focus:border-[#D8A444] focus:outline-none"
         />
       </div>
 
