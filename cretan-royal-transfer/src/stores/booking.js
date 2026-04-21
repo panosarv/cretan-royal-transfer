@@ -28,7 +28,16 @@ export const useBookingStore = defineStore('booking', {
     idNumber: '',
     additionalInfo: '',
 
-    price: null
+    price: null,
+
+    // Precise location data (from LocationPicker)
+    pickupText: '',
+    dropoffText: '',
+    pickupLatLng: null,
+    dropoffLatLng: null,
+
+    // Passenger IDs, one per passenger by index
+    passengerIds: []
   }),
 
   getters: {
@@ -94,6 +103,12 @@ export const useBookingStore = defineStore('booking', {
       else if (this.passengers <= 8) this.price = route.upTo8
       else if (this.passengers <= 14) this.price = route.upTo14
       else this.price = null
+    },
+
+    setPassengerId(index, value) {
+      const ids = [...this.passengerIds]
+      ids[index] = value
+      this.passengerIds = ids
     }
   }
 })
