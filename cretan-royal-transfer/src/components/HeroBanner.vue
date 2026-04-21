@@ -49,6 +49,13 @@
         </div>
       </div>
     </div>
+
+    <!-- Diagonal cut into Services section -->
+    <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full h-[60px] block" fill="#F5F0E8">
+        <polygon points="0,60 1440,0 1440,60" />
+      </svg>
+    </div>
   </div>
 </template>
 
