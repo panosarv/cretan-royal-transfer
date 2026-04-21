@@ -3,16 +3,12 @@ defineProps({
   currentStep: {
     type: Number,
     required: true
+  },
+  steps: {
+    type: Array,
+    required: true
   }
 })
-
-const steps = [
-  { number: 1, label: 'Type' },
-  { number: 2, label: 'Route' },
-  { number: 3, label: 'Details' },
-  { number: 4, label: 'Summary' },
-  { number: 5, label: 'Your Info' }
-]
 </script>
 
 <template>
