@@ -1,51 +1,94 @@
 <template>
-  <div class="py-16 px-4 sm:px-6 lg:px-8 bg-stone-50" id="tours-airports">
+  <div class="py-20 px-4 sm:px-6 lg:px-8 bg-brand-stone min-h-screen pt-24" id="tours-airports">
     <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-3xl font-extrabold text-stone-900 sm:text-4xl">
+      <h2
+        v-motion
+        :initial="{ opacity: 0, y: 40 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 600 } }"
+        class="text-3xl font-extrabold text-brand-charcoal sm:text-4xl font-heading"
+      >
         {{ t('message.tours_airports_title') }}
       </h2>
-      <p class="mt-4 text-lg text-stone-600">
+      <p
+        v-motion
+        :initial="{ opacity: 0, y: 20 }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 500, delay: 150 } }"
+        class="mt-4 text-lg text-stone-600"
+      >
         {{ t('message.tours_airports_subtitle') }}
       </p>
     </div>
 
     <div class="mt-12 max-w-7xl mx-auto p-2 scrollbar-hide">
-      <swiper v-if="isMobile" :slides-per-view="1" :space-between="10" :autoplay="{ delay: 3000 }" @slide-change="updateActiveIndex" class="swiper-container" :navigation="true" :modules="[Navigation]" ref="carousel">
+      <swiper
+        v-if="isMobile"
+        :slides-per-view="1"
+        :space-between="10"
+        :autoplay="{ delay: 3000 }"
+        @slide-change="updateActiveIndex"
+        class="swiper-container"
+        :navigation="true"
+        :modules="[Navigation]"
+        ref="carousel"
+      >
         <swiper-slide v-for="(service, index) in services" :key="index">
-          <button @click="selectService(service)" class="bg-white rounded-lg shadow-lg overflow-hidden border border-stone-200 hover:shadow-xl transition flex items-center justify-center p-4 text-center min-w-[180px] h-24 w-full">
-            <h3 class="text-md font-semibold text-stone-900 whitespace-normal break-words">{{ service.title }}</h3>
+          <button
+            @click="selectService(service)"
+            class="bg-white rounded-xl shadow border-2 transition-all duration-300 flex items-center justify-center p-4 text-center min-w-[180px] h-24 w-full"
+            :class="selectedService === service ? 'border-brand-gold bg-brand-gold/10 text-brand-charcoal' : 'border-stone-200 hover:border-brand-gold/50 hover:shadow-lg'"
+          >
+            <h3 class="text-md font-semibold text-brand-charcoal whitespace-normal break-words font-heading">{{ service.title }}</h3>
           </button>
         </swiper-slide>
       </swiper>
       <div class="pagination-dots" v-if="isMobile">
         <span v-for="(service, index) in services" :key="index" class="dot" :class="{ active: index === activeIndex }"></span>
       </div>
-     
+
       <div v-else class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        <button v-for="(service, index) in services" :key="index" @click="selectService(service)" class="bg-white rounded-lg shadow-lg overflow-hidden border border-stone-200 hover:shadow-xl transition flex items-center justify-center p-4 text-center w-full h-24" :class="{'bg-gray-300': selectedService === service}">
-          <h3 class="text-md font-semibold text-stone-900 whitespace-normal break-words">{{ service.title }}</h3>
+        <button
+          v-for="(service, index) in services"
+          :key="index"
+          @click="selectService(service)"
+          class="rounded-xl shadow border-2 transition-all duration-300 flex items-center justify-center p-4 text-center w-full h-24 font-heading font-semibold text-brand-charcoal hover:scale-[1.02] hover:shadow-lg"
+          :class="selectedService === service ? 'border-brand-gold bg-brand-gold/10' : 'bg-white border-stone-200 hover:border-brand-gold/50'"
+        >
+          <h3 class="text-md whitespace-normal break-words">{{ service.title }}</h3>
         </button>
       </div>
     </div>
 
-    <div v-if="selectedService" class="max-w-5xl mx-auto mt-12 p-6 bg-white shadow-lg rounded-lg border border-stone-200">
-      <img :src="selectedService.image" :alt="selectedService.title" class="w-full h-64 object-cover rounded-lg" />
-      <div class="mt-6">
-        <h3 class="text-2xl font-bold text-stone-900">{{ selectedService.title }}</h3>
-        <p class="mt-4 text-lg text-stone-600">{{ selectedService.description }}</p>
-        <ul class="mt-4 text-stone-500">
-          <li v-for="(feature, i) in selectedService.features" :key="i" class="flex items-center">
-            <img src="/src/assets/icons/next.svg" class="h-5 w-5 text-amber-600 mr-2" />
-            {{ feature }}
-          </li>
-        </ul>
+    <Transition name="detail-panel">
+      <div
+        v-if="selectedService"
+        class="max-w-5xl mx-auto mt-12 p-6 bg-white shadow-xl rounded-2xl border border-stone-200"
+      >
+        <div class="overflow-hidden rounded-xl">
+          <img :src="selectedService.image" :alt="selectedService.title" class="w-full h-64 object-cover" />
+        </div>
+        <div class="mt-6">
+          <h3 class="text-2xl font-bold text-brand-charcoal font-heading">{{ selectedService.title }}</h3>
+          <p class="mt-4 text-lg text-stone-600">{{ selectedService.description }}</p>
+          <ul class="mt-4 text-stone-500 space-y-1">
+            <li v-for="(feature, i) in selectedService.features" :key="i" class="flex items-center">
+              <img src="/src/assets/icons/next.svg" class="h-5 w-5 mr-2 flex-shrink-0" />
+              {{ feature }}
+            </li>
+          </ul>
+          <RouterLink to="/book" class="inline-block mt-6">
+            <button class="bg-brand-gold text-brand-charcoal px-8 py-3 rounded-lg font-semibold hover:bg-brand-gold-dark transition-all duration-300 hover:scale-105 font-heading">
+              {{ t('message.book_now') }}
+            </button>
+          </RouterLink>
+        </div>
       </div>
-    </div>
+    </Transition>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
+import { RouterLink } from 'vue-router';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation } from 'swiper/modules'
 import 'swiper/css';
@@ -227,7 +270,18 @@ onMounted(() => {
 }
 .swiper-pagination-bullet {
   background: #333;
-} 
+}
 
+.detail-panel-enter-active,
+.detail-panel-leave-active {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.detail-panel-enter-from {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.detail-panel-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
 </style>
-
