@@ -17,7 +17,7 @@ import BookingWizard from '../components/booking/BookingWizard.vue'
     <!-- Wizard Container -->
     <div class="relative w-full max-w-2xl bg-stone-900/85 p-6 sm:p-10 rounded-2xl shadow-2xl border border-stone-700/50">
       <div class="text-center mb-8">
-        <h1 class="text-3xl sm:text-4xl font-bold text-stone-100 mb-2">Book Your Transfer</h1>
+        <h1 class="text-3xl sm:text-4xl font-bold text-stone-100 mb-2 font-heading">Book Your Transfer</h1>
         <p class="text-stone-400">Private transfers and tours across Crete</p>
       </div>
       <BookingWizard />
