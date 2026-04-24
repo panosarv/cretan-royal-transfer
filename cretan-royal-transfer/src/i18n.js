@@ -120,7 +120,20 @@ const messages = {
       phalasarna_tour_description: 'Visit the ancient ruins and beautiful beaches of Phalasarna with a guided tour.',
       phalasarna_tour_feature1: 'Historical Sites',
       phalasarna_tour_feature2: 'Beach Exploration',
-      phalasarna_tour_feature3: 'Local Guide'
+      phalasarna_tour_feature3: 'Local Guide',
+      about_us_section_label: 'ABOUT US',
+      about_us_section_heading: 'Cretan Royal Transfer',
+      about_us_para_1: 'Cretan Royal Transfer operates in the field of private tourist transfers in Crete, offering high-level transportation services with consistency, professionalism and respect for every visitor.',
+      about_us_para_2: 'With many years of experience in transfers to and from airports, hotels, villas and tourist destinations, our goal is to ensure every client enjoys a comfortable, safe and pleasant journey from the first to the last moment of their stay on the island.',
+      about_us_para_3: 'We place particular importance on the reliability and quality of our services. All transfers are carried out with modern, clean and fully maintained vehicles, while our drivers are experienced professionals with excellent knowledge of Crete and the needs of the modern traveller.',
+      about_us_why_title: 'Why Choose Cretan Royal Transfer',
+      about_us_bullet_1: 'Always on time – We monitor your flight and wait for you.',
+      about_us_bullet_2: 'In case of flight delay, your booking is not lost.',
+      about_us_bullet_3: 'Safe and comfortable transfers with a modern, clean vehicle.',
+      about_us_bullet_4: 'Professional and friendly drivers.',
+      about_us_bullet_5: 'Fixed prices – you know exactly what you pay.',
+      about_us_bullet_6: 'Private transfer with no waiting and no other passengers.',
+      about_us_bullet_7: 'Available 24 hours.'
     }
   },
   gr: {
@@ -242,7 +255,20 @@ const messages = {
       phalasarna_tour_description: 'Επισκεφθείτε τα αρχαία ερείπια και τις όμορφες παραλίες της Φαλάσαρνας με μια ξενάγηση.',
       phalasarna_tour_feature1: 'Ιστορικοί Χώροι',
       phalasarna_tour_feature2: 'Εξερεύνηση Παραλίας',
-      phalasarna_tour_feature3: 'Τοπικός Ξεναγός'
+      phalasarna_tour_feature3: 'Τοπικός Ξεναγός',
+      about_us_section_label: 'ΣΧΕΤΙΚΑ ΜΑΣ',
+      about_us_section_heading: 'Cretan Royal Transfer',
+      about_us_para_1: 'Η Cretan Royal Transfer δραστηριοποιείται στον τομέα των ιδιωτικών μεταφορών του τουρισμού στην Κρήτη, προσφέροντας υψηλού επιπέδου υπηρεσίες μετακίνησης, με συνέπεια, επαγγελματισμό και σεβασμό προς κάθε επισκέπτη.',
+      about_us_para_2: 'Με πολυετή εμπειρία στον χώρο των μεταφορών από και προς αεροδρόμια, ξενοδοχεία, βίλες και τουριστικούς προορισμούς, στόχος μας είναι να εξασφαλίζουμε σε κάθε πελάτη ένα άνετο ασφαλές και ευχάριστο ταξίδι από την πρώτη έως την τελευταία στιγμή παραμονής του στο νησί.',
+      about_us_para_3: 'Δίνουμε ιδιαίτερη σημασία στην αξιοπιστία και την ποιότητα των υπηρεσιών μας. Όλες οι μεταφορές πραγματοποιούνται με σύγχρονα, καθαρά και πλήρως συντηρημένα οχήματα, ενώ οι οδηγοί μας είναι έμπειροι επαγγελματίες με άριστη γνώση της Κρήτης και των αναγκών του σύγχρονου ταξιδιώτη.',
+      about_us_why_title: 'Γιατί να επιλέξετε την Cretan Royal Transfer',
+      about_us_bullet_1: 'Πάντα στην ώρα μας – Παρακολουθούμε την πτήση σας και περιμένουμε.',
+      about_us_bullet_2: 'Σε περίπτωση καθυστέρησης πτήσεως, δεν χάνεται την κράτηση.',
+      about_us_bullet_3: 'Ασφαλείς και άνετες μετακινήσεις με σύγχρονο καθαρό όχημα.',
+      about_us_bullet_4: 'Επαγγελματίες και φιλικοί οδηγοί.',
+      about_us_bullet_5: 'Σταθερές τιμές – ξέρετε ακριβώς τι πληρώνετε.',
+      about_us_bullet_6: 'Ιδιωτική μεταφορά χωρίς αναμονές και χωρίς άλλους επιβάτες.',
+      about_us_bullet_7: 'Διαθέσιμοι 24 ώρες.'
     }
   },
   de: {
@@ -364,7 +390,20 @@ const messages = {
       phalasarna_tour_description: 'Besuchen Sie die antiken Ruinen und schönen Strände von Phalasarna mit einer geführten Tour.',
       phalasarna_tour_feature1: 'Historische Stätten',
       phalasarna_tour_feature2: 'Stranderkundung',
-      phalasarna_tour_feature3: 'Lokaler Führer'
+      phalasarna_tour_feature3: 'Lokaler Führer',
+      about_us_section_label: 'ÜBER UNS',
+      about_us_section_heading: 'Cretan Royal Transfer',
+      about_us_para_1: 'Cretan Royal Transfer ist im Bereich privater Touristentransfers auf Kreta tätig und bietet erstklassige Transportdienstleistungen mit Zuverlässigkeit, Professionalität und Respekt gegenüber jedem Gast.',
+      about_us_para_2: 'Mit langjähriger Erfahrung im Transfer zu und von Flughäfen, Hotels, Villen und touristischen Zielen ist es unser Ziel, jedem Kunden eine komfortable, sichere und angenehme Reise vom ersten bis zum letzten Moment seines Aufenthalts auf der Insel zu gewährleisten.',
+      about_us_para_3: 'Wir legen besonderen Wert auf die Zuverlässigkeit und Qualität unserer Dienstleistungen. Alle Transfers werden mit modernen, sauberen und vollständig gewarteten Fahrzeugen durchgeführt, während unsere Fahrer erfahrene Fachleute mit ausgezeichneten Kenntnissen Kretas sind.',
+      about_us_why_title: 'Warum Cretan Royal Transfer wählen',
+      about_us_bullet_1: 'Immer pünktlich – Wir verfolgen Ihren Flug und warten auf Sie.',
+      about_us_bullet_2: 'Bei Flugverspätung geht Ihre Buchung nicht verloren.',
+      about_us_bullet_3: 'Sichere und komfortable Transfers mit einem modernen, sauberen Fahrzeug.',
+      about_us_bullet_4: 'Professionelle und freundliche Fahrer.',
+      about_us_bullet_5: 'Festpreise – Sie wissen genau, was Sie zahlen.',
+      about_us_bullet_6: 'Privater Transfer ohne Wartezeiten und ohne andere Passagiere.',
+      about_us_bullet_7: 'Rund um die Uhr verfügbar.'
     }
   },
   fr: {
@@ -486,7 +525,20 @@ const messages = {
       phalasarna_tour_description: 'Visitez les ruines antiques et les belles plages de Phalasarna avec une visite guidée.',
       phalasarna_tour_feature1: 'Sites historiques',
       phalasarna_tour_feature2: 'Exploration de la plage',
-      phalasarna_tour_feature3: 'Guide local'
+      phalasarna_tour_feature3: 'Guide local',
+      about_us_section_label: 'À PROPOS',
+      about_us_section_heading: 'Cretan Royal Transfer',
+      about_us_para_1: 'Cretan Royal Transfer opère dans le domaine des transferts touristiques privés en Crète, offrant des services de transport de haute qualité avec cohérence, professionnalisme et respect envers chaque visiteur.',
+      about_us_para_2: 'Forts de nombreuses années d\'expérience dans les transferts vers et depuis les aéroports, hôtels, villas et destinations touristiques, notre objectif est d\'assurer à chaque client un voyage confortable, sûr et agréable du premier au dernier moment de son séjour sur l\'île.',
+      about_us_para_3: 'Nous accordons une importance particulière à la fiabilité et à la qualité de nos services. Tous les transferts sont effectués avec des véhicules modernes, propres et entièrement entretenus, tandis que nos chauffeurs sont des professionnels expérimentés avec une excellente connaissance de la Crète.',
+      about_us_why_title: 'Pourquoi choisir Cretan Royal Transfer',
+      about_us_bullet_1: 'Toujours à l\'heure – Nous suivons votre vol et vous attendons.',
+      about_us_bullet_2: 'En cas de retard de vol, votre réservation n\'est pas perdue.',
+      about_us_bullet_3: 'Transferts sûrs et confortables avec un véhicule moderne et propre.',
+      about_us_bullet_4: 'Chauffeurs professionnels et sympathiques.',
+      about_us_bullet_5: 'Prix fixes – vous savez exactement ce que vous payez.',
+      about_us_bullet_6: 'Transfert privé sans attente et sans autres passagers.',
+      about_us_bullet_7: 'Disponible 24 heures sur 24.'
     }
   }
 };
