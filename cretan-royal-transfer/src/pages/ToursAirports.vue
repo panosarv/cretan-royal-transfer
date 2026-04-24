@@ -28,7 +28,7 @@
       </p>
     </div>
 
-    <!-- Card grid -->
+    <!-- Flip card grid -->
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <div
         v-for="(service, index) in services"
@@ -36,62 +36,63 @@
         v-motion
         :initial="{ opacity: 0, y: 30 }"
         :visible-once="{ opacity: 1, y: 0, transition: { delay: (index % 6) * 80, duration: 500 } }"
-        class="group relative rounded-2xl overflow-hidden cursor-pointer h-[300px] shadow-lg transition-all duration-300"
-        :class="selectedService === service ? 'ring-2 ring-brand-gold ring-offset-2 ring-offset-brand-stone' : 'hover:shadow-2xl'"
-        @click="selectService(service)"
+        class="h-[320px] cursor-pointer"
+        style="perspective: 1000px;"
+        @click="toggleFlip(index)"
       >
-        <img
-          :src="service.image"
-          :alt="service.title"
-          class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 transition-all duration-300" />
-
-        <div class="absolute bottom-0 left-0 right-0 p-5">
-          <span class="text-brand-gold text-xs font-semibold tracking-widest uppercase">{{ service.category }}</span>
-          <h3 class="text-white text-lg font-bold font-heading mt-1">{{ service.title }}</h3>
-          <p class="text-stone-300 text-sm mt-2 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 line-clamp-2">
-            {{ service.description }}
-          </p>
-        </div>
-
-        <div v-if="selectedService === service" class="absolute top-4 right-4 bg-brand-gold rounded-full p-1.5">
-          <svg class="w-4 h-4 text-brand-charcoal" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- Detail panel -->
-    <Transition name="detail-panel">
-      <div
-        v-if="selectedService"
-        class="max-w-5xl mx-auto mt-12 bg-white shadow-2xl rounded-2xl overflow-hidden border border-stone-200"
-      >
-        <img :src="selectedService.image" :alt="selectedService.title" class="w-full h-72 object-cover" />
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
-          <div class="border-t-4 border-brand-gold pt-5">
-            <span class="text-brand-gold text-xs font-semibold tracking-widest uppercase">{{ selectedService.category }}</span>
-            <h3 class="text-2xl font-bold text-brand-charcoal font-heading mt-2 mb-4">{{ selectedService.title }}</h3>
-            <p class="text-stone-600 leading-relaxed">{{ selectedService.description }}</p>
+        <!-- Inner rotating wrapper -->
+        <div
+          class="relative w-full h-full transition-transform duration-700"
+          :style="{ transformStyle: 'preserve-3d', transform: flipped[index] ? 'rotateY(180deg)' : 'rotateY(0deg)' }"
+        >
+          <!-- Front face -->
+          <div
+            class="absolute inset-0 rounded-2xl overflow-hidden shadow-lg"
+            style="backface-visibility: hidden;"
+          >
+            <img
+              :src="service.image"
+              :alt="service.title"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <!-- Flip hint icon -->
+            <div class="absolute top-3 right-3 bg-white/20 backdrop-blur-sm rounded-full p-1.5">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-5">
+              <span class="text-brand-gold text-xs font-semibold tracking-widest uppercase">{{ service.category }}</span>
+              <h3 class="text-white text-lg font-bold font-heading mt-1">{{ service.title }}</h3>
+            </div>
           </div>
-          <div class="flex flex-col justify-between">
-            <ul class="space-y-3">
-              <li v-for="(feature, i) in selectedService.features" :key="i" class="flex items-start text-stone-600">
-                <img src="/src/assets/icons/next.svg" class="h-5 w-5 mr-3 flex-shrink-0 mt-0.5" alt="" />
-                {{ feature }}
-              </li>
-            </ul>
-            <RouterLink to="/book" class="mt-6 inline-block">
-              <button class="w-full bg-brand-gold text-brand-charcoal px-8 py-3 rounded-lg font-semibold font-heading hover:bg-brand-gold-dark transition-all duration-300 hover:scale-105">
+
+          <!-- Back face -->
+          <div
+            class="absolute inset-0 rounded-2xl bg-brand-charcoal p-5 flex flex-col justify-between shadow-lg"
+            style="backface-visibility: hidden; transform: rotateY(180deg);"
+          >
+            <div class="overflow-y-auto flex-1 pr-1">
+              <span class="text-brand-gold text-xs font-semibold tracking-widest uppercase">{{ service.category }}</span>
+              <h3 class="text-stone-100 text-base font-bold font-heading mt-1 mb-2">{{ service.title }}</h3>
+              <p class="text-stone-300 text-sm leading-relaxed mb-3">{{ service.description }}</p>
+              <ul class="space-y-1.5">
+                <li v-for="(feature, i) in service.features" :key="i" class="flex items-start text-stone-400 text-sm">
+                  <img src="/src/assets/icons/next.svg" class="h-4 w-4 mr-2 flex-shrink-0 mt-0.5" alt="" />
+                  {{ feature }}
+                </li>
+              </ul>
+            </div>
+            <RouterLink to="/book" class="mt-3 block">
+              <button class="w-full bg-brand-gold text-brand-charcoal px-6 py-2.5 rounded-lg font-semibold font-heading hover:bg-brand-gold-dark transition-all duration-300 hover:scale-105 text-sm">
                 {{ t('message.book_now') }}
               </button>
             </RouterLink>
           </div>
         </div>
       </div>
-    </Transition>
+    </div>
   </div>
 </template>
 
@@ -138,24 +139,9 @@ const services = computed(() => [
   { image: phalasarnaimg, category: 'Beach Tour',       title: t('message.phalasarna_tour_title'),             description: t('message.phalasarna_tour_description'),             features: [t('message.phalasarna_tour_feature1'),             t('message.phalasarna_tour_feature2'),             t('message.phalasarna_tour_feature3')] },
 ]);
 
-const selectedService = ref(null);
+const flipped = ref(Array(16).fill(false));
 
-const selectService = (service) => {
-  selectedService.value = selectedService.value === service ? null : service;
+const toggleFlip = (index) => {
+  flipped.value = flipped.value.map((v, i) => i === index ? !v : v);
 };
 </script>
-
-<style scoped>
-.detail-panel-enter-active,
-.detail-panel-leave-active {
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-.detail-panel-enter-from {
-  opacity: 0;
-  transform: translateY(16px);
-}
-.detail-panel-leave-to {
-  opacity: 0;
-  transform: translateY(-8px);
-}
-</style>
