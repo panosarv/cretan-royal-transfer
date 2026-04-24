@@ -71,15 +71,15 @@
           v-motion
           :initial="{ opacity: 0, x: 40 }"
           :visible-once="{ opacity: 1, x: 0, transition: { duration: 600, delay: 100 } }"
-          class="grid grid-cols-2 grid-rows-2 gap-3 h-[420px]"
+          class="grid gap-3 grid-cols-1 h-auto sm:grid-cols-2 sm:grid-rows-2 sm:h-[420px]"
         >
-          <div class="row-span-2 overflow-hidden rounded-2xl">
+          <div class="overflow-hidden rounded-2xl h-48 sm:row-span-2 sm:h-full">
             <img :src="reliabilityimg" class="w-full h-full object-cover" alt="Αξιόπιστες Μεταφορές" />
           </div>
-          <div class="overflow-hidden rounded-2xl">
+          <div class="overflow-hidden rounded-2xl h-48 sm:h-full">
             <img :src="safetyimg" class="w-full h-full object-cover" alt="Ασφάλεια" />
           </div>
-          <div class="overflow-hidden rounded-2xl">
+          <div class="overflow-hidden rounded-2xl h-48 sm:h-full">
             <img :src="airportimg" class="w-full h-full object-cover" alt="Αεροδρόμιο" />
           </div>
         </div>
