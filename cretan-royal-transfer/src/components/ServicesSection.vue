@@ -32,7 +32,7 @@
     <div class="bg-brand-stone pb-12 block lg:hidden">
       <div
         ref="carousel"
-        class="flex overflow-x-auto gap-6 px-6 md:px-12 scroll-smooth"
+        class="flex overflow-x-auto gap-6 px-6 md:px-12"
         style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;"
         @scroll="onScroll"
       >
