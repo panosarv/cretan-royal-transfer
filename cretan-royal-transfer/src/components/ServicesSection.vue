@@ -28,50 +28,81 @@
       </p>
     </div>
 
-    <!-- Alternating rows -->
-    <div
-      v-for="(service, index) in services"
-      :key="index"
-      class="flex flex-col min-h-[420px]"
-      :class="index % 2 !== 0 ? 'md:flex-row-reverse bg-white' : 'md:flex-row bg-brand-stone'"
-    >
-      <!-- Image side -->
+    <!-- Carousel wrapper -->
+    <div class="bg-brand-stone pb-12">
       <div
-        class="w-full md:w-1/2 overflow-hidden min-h-[280px] md:min-h-full"
-        v-motion
-        :initial="{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }"
-        :visible-once="{ opacity: 1, x: 0, transition: { duration: 600 } }"
+        ref="carousel"
+        class="flex overflow-x-auto gap-6 px-6 md:px-12 lg:px-16 scroll-smooth"
+        style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;"
+        @scroll="onScroll"
       >
-        <img
-          :src="service.image"
-          :alt="service.alt"
-          class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-        />
+        <!-- Flip cards -->
+        <div
+          v-for="(service, index) in services"
+          :key="index"
+          class="flex-shrink-0 w-[280px] sm:w-[320px] h-[400px] cursor-pointer"
+          style="scroll-snap-align: start;"
+          @click="toggleFlip(index)"
+        >
+          <!-- Perspective wrapper -->
+          <div
+            class="relative w-full h-full transition-transform duration-700"
+            :style="{ transformStyle: 'preserve-3d', transform: flipped[index] ? 'rotateY(180deg)' : 'rotateY(0deg)' }"
+          >
+            <!-- Front face -->
+            <div
+              class="absolute inset-0 rounded-2xl overflow-hidden shadow-lg"
+              style="backface-visibility: hidden;"
+            >
+              <img :src="service.image" :alt="service.alt" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+              <!-- Flip hint -->
+              <div class="absolute top-3 right-3 bg-white/20 backdrop-blur-sm rounded-full p-1.5">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-5">
+                <span class="text-brand-gold text-xs font-semibold tracking-widest uppercase">{{ service.category }}</span>
+                <h3 class="text-white text-xl font-bold font-heading mt-1">{{ service.title }}</h3>
+              </div>
+            </div>
+
+            <!-- Back face -->
+            <div
+              class="absolute inset-0 rounded-2xl bg-brand-charcoal p-6 flex flex-col justify-between shadow-lg"
+              style="backface-visibility: hidden; transform: rotateY(180deg);"
+            >
+              <div class="overflow-y-auto flex-1 pr-1">
+                <span class="text-brand-gold text-xs font-semibold tracking-widest uppercase">{{ service.category }}</span>
+                <h3 class="text-stone-100 text-lg font-bold font-heading mt-1 mb-3">{{ service.title }}</h3>
+                <p class="text-stone-300 text-sm leading-relaxed mb-4">{{ service.description }}</p>
+                <ul class="space-y-2">
+                  <li v-for="(feature, i) in service.features" :key="i" class="flex items-start text-stone-400 text-sm">
+                    <img src="/src/assets/icons/next.svg" class="h-4 w-4 mr-2 flex-shrink-0 mt-0.5" alt="" />
+                    {{ feature }}
+                  </li>
+                </ul>
+              </div>
+              <RouterLink to="/book" class="mt-4 block">
+                <button class="w-full bg-brand-gold text-brand-charcoal px-6 py-3 rounded-lg font-semibold font-heading hover:bg-brand-gold-dark transition-all duration-300 hover:scale-105 text-sm">
+                  {{ t('message.book_now') }}
+                </button>
+              </RouterLink>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Text side -->
-      <div
-        class="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 py-12"
-        v-motion
-        :initial="{ opacity: 0, x: index % 2 === 0 ? 40 : -40 }"
-        :visible-once="{ opacity: 1, x: 0, transition: { duration: 600 } }"
-      >
-        <span class="text-brand-gold text-xs font-semibold tracking-widest uppercase mb-2">{{ service.category }}</span>
-        <h3 class="text-2xl sm:text-3xl font-bold text-brand-charcoal font-heading mb-4">{{ service.title }}</h3>
-        <p class="text-stone-600 mb-5 leading-relaxed">{{ service.description }}</p>
-        <ul class="space-y-2 mb-7">
-          <li v-for="(feature, i) in service.features" :key="i" class="flex items-center text-stone-500">
-            <img src="/src/assets/icons/next.svg" class="h-4 w-4 mr-3 flex-shrink-0" alt="" />
-            {{ feature }}
-          </li>
-        </ul>
-        <div>
-          <RouterLink to="/book">
-            <button class="bg-brand-gold text-brand-charcoal px-8 py-3 rounded-lg font-semibold font-heading hover:bg-brand-gold-dark transition-all duration-300 hover:scale-105">
-              {{ t('message.book_now') }}
-            </button>
-          </RouterLink>
-        </div>
+      <!-- Dot indicators -->
+      <div class="flex justify-center gap-2 mt-6">
+        <button
+          v-for="(service, index) in services"
+          :key="index"
+          class="w-2.5 h-2.5 rounded-full transition-all duration-300"
+          :class="activeIndex === index ? 'bg-brand-gold w-6' : 'bg-stone-400'"
+          @click="scrollToCard(index)"
+        />
       </div>
     </div>
 
@@ -92,8 +123,8 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue';
 import { RouterLink } from 'vue-router';
-import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import aiportchaniaimg from '/src/assets/airport-chania-services.jpg';
 import airportheraklionimg from '/src/assets/airport-heraklion-services.jpg';
@@ -112,4 +143,31 @@ const services = computed(() => [
   { image: arkaditourimg,       category: 'Historical Tour',   title: t('message.arkadi_tour_title'),                 description: t('message.arkadi_tour_description'),                 features: [t('message.arkadi_tour_feature1'),                 t('message.arkadi_tour_feature2'),                 t('message.arkadi_tour_feature3')],                 alt: 'Arkadi Tour' },
   { image: elafonisiimg,        category: 'Beach Tour',        title: t('message.elafonisi_tour_title'),              description: t('message.elafonisi_tour_description'),              features: [t('message.elafonisi_tour_feature1'),              t('message.elafonisi_tour_feature2'),              t('message.elafonisi_tour_feature3')],              alt: 'Elafonisi Tour' },
 ]);
+
+const flipped = ref(Array(6).fill(false));
+const activeIndex = ref(0);
+const carousel = ref(null);
+
+const toggleFlip = (index) => {
+  flipped.value = flipped.value.map((v, i) => i === index ? !v : v);
+};
+
+const onScroll = () => {
+  if (!carousel.value) return;
+  const cardWidth = carousel.value.querySelector('div')?.offsetWidth ?? 296;
+  activeIndex.value = Math.round(carousel.value.scrollLeft / (cardWidth + 24));
+};
+
+const scrollToCard = (index) => {
+  if (!carousel.value) return;
+  const cardWidth = carousel.value.querySelector('div')?.offsetWidth ?? 296;
+  carousel.value.scrollTo({ left: index * (cardWidth + 24), behavior: 'smooth' });
+};
 </script>
+
+<style scoped>
+/* Hide scrollbar across browsers */
+div[style*="scroll-snap-type"]::-webkit-scrollbar {
+  display: none;
+}
+</style>
