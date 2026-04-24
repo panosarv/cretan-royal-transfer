@@ -32,7 +32,7 @@
     <div class="bg-brand-stone pb-12">
       <div
         ref="carousel"
-        class="flex overflow-x-auto gap-6 px-6 md:px-12 lg:px-16 scroll-smooth"
+        class="flex overflow-x-auto gap-6 px-6 md:px-12 lg:px-16"
         style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;"
         @scroll="onScroll"
       >
@@ -44,7 +44,7 @@
           style="scroll-snap-align: start; perspective: 1000px;"
           @click="toggleFlip(index)"
         >
-          <!-- Perspective wrapper -->
+          <!-- Rotating card inner wrapper (perspective set on parent) -->
           <div
             class="relative w-full h-full transition-transform duration-700"
             :style="{ transformStyle: 'preserve-3d', transform: flipped[index] ? 'rotateY(180deg)' : 'rotateY(0deg)' }"
@@ -154,13 +154,13 @@ const toggleFlip = (index) => {
 
 const onScroll = () => {
   if (!carousel.value) return;
-  const cardWidth = carousel.value.querySelector('div')?.offsetWidth ?? 296;
+  const cardWidth = carousel.value.children[0]?.offsetWidth ?? 296;
   activeIndex.value = Math.round(carousel.value.scrollLeft / (cardWidth + 24));
 };
 
 const scrollToCard = (index) => {
   if (!carousel.value) return;
-  const cardWidth = carousel.value.querySelector('div')?.offsetWidth ?? 296;
+  const cardWidth = carousel.value.children[0]?.offsetWidth ?? 296;
   carousel.value.scrollTo({ left: index * (cardWidth + 24), behavior: 'smooth' });
 };
 </script>
