@@ -11,7 +11,7 @@ import MeetTheTeam from '../components/MeetTheTeam.vue'
     <!-- 1. Hero -->
     <HeroBanner />
 
-    <!-- 2. Services (immediately after hero diagonal cut) -->
+    <!-- 2. Services -->
     <ServicesSection />
 
     <!-- 3. About Us (company story) -->
@@ -20,7 +20,7 @@ import MeetTheTeam from '../components/MeetTheTeam.vue'
     <!-- 5. Why Choose Us -->
     <AboutSection />
 
-    <!-- 6. Meet the Team — overlaps About by 60px -->
+    <!-- 6. Meet the Team -->
     <div class="relative z-10">
       <div class="relative py-20 px-4 sm:px-6 lg:px-8">
         <div class="absolute inset-0">
