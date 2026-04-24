@@ -29,7 +29,7 @@
     </div>
 
     <!-- Carousel wrapper: mobile/tablet only -->
-    <div class="bg-brand-stone pb-12 block lg:hidden">
+    <div class="bg-brand-stone pb-12 block lg:hidden overflow-x-hidden">
       <div
         ref="carousel"
         class="flex overflow-x-auto gap-6 px-6 md:px-12"
