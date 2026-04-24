@@ -41,7 +41,7 @@
           v-for="(service, index) in services"
           :key="index"
           class="flex-shrink-0 w-[280px] sm:w-[320px] h-[400px] cursor-pointer"
-          style="scroll-snap-align: start;"
+          style="scroll-snap-align: start; perspective: 1000px;"
           @click="toggleFlip(index)"
         >
           <!-- Perspective wrapper -->
