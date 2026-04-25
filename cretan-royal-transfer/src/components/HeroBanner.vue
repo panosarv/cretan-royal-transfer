@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen bg-brand-charcoal">
+  <div class="relative h-screen bg-brand-charcoal overflow-hidden">
     <!-- Parallax background -->
     <div
       class="absolute inset-0 scale-110"
