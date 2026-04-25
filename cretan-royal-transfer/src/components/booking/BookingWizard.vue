@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useBookingStore } from '@/stores/booking'
 import WizardProgress from './WizardProgress.vue'
 import StepType from './StepType.vue'
@@ -9,29 +10,30 @@ import StepDetails from './StepDetails.vue'
 import StepSummary from './StepSummary.vue'
 import StepUser from './StepUser.vue'
 
+const { t } = useI18n()
 const booking = useBookingStore()
 
-const transferStepDefs = [
-  { number: 1, label: 'Type' },
-  { number: 2, label: 'Route' },
-  { number: 3, label: 'Details' },
-  { number: 4, label: 'Summary' },
-  { number: 5, label: 'Your Info' }
-]
+const transferStepDefs = computed(() => [
+  { number: 1, label: t('message.wizard_step_type') },
+  { number: 2, label: t('message.wizard_step_route') },
+  { number: 3, label: t('message.wizard_step_details') },
+  { number: 4, label: t('message.wizard_step_summary') },
+  { number: 5, label: t('message.wizard_step_your_info') },
+])
 
-const tourStepDefs = [
-  { number: 1, label: 'Type' },
-  { number: 2, label: 'Tour' },
-  { number: 3, label: 'Location' },
-  { number: 4, label: 'Details' },
-  { number: 5, label: 'Summary' },
-  { number: 6, label: 'Your Info' }
-]
+const tourStepDefs = computed(() => [
+  { number: 1, label: t('message.wizard_step_type') },
+  { number: 2, label: t('message.wizard_step_tour') },
+  { number: 3, label: t('message.wizard_step_location') },
+  { number: 4, label: t('message.wizard_step_details') },
+  { number: 5, label: t('message.wizard_step_summary') },
+  { number: 6, label: t('message.wizard_step_your_info') },
+])
 
 const transferComponents = [StepType, StepRoute, StepDetails, StepSummary, StepUser]
 const tourComponents = [StepType, StepRoute, StepMap, StepDetails, StepSummary, StepUser]
 
-const stepDefs = computed(() => booking.type === 'tour' ? tourStepDefs : transferStepDefs)
+const stepDefs = computed(() => booking.type === 'tour' ? tourStepDefs.value : transferStepDefs.value)
 const stepComponents = computed(() => booking.type === 'tour' ? tourComponents : transferComponents)
 const currentComponent = computed(() => stepComponents.value[booking.step - 1])
 </script>
