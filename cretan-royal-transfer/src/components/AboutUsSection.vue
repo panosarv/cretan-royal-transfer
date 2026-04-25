@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-brand-stone py-20 px-4 sm:px-6 lg:px-8">
+  <div class="bg-brand-stone py-20 px-4 sm:px-6 lg:px-8 border-t-4 border-brand-gold">
     <div class="max-w-7xl mx-auto">
 
       <!-- Section header -->
@@ -10,7 +10,7 @@
           :visible-once="{ opacity: 1, y: 0, transition: { duration: 400 } }"
           class="text-brand-gold text-xs font-semibold tracking-widest uppercase mb-3"
         >
-          ABOUT US
+          {{ t('message.about_us_section_label') }}
         </p>
         <h2
           v-motion
@@ -18,7 +18,7 @@
           :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: 100 } }"
           class="text-3xl font-extrabold text-brand-charcoal sm:text-4xl font-heading"
         >
-          Cretan Royal Transfer
+          {{ t('message.about_us_section_heading') }}
         </h2>
       </div>
 
@@ -31,28 +31,13 @@
           :initial="{ opacity: 0, x: -40 }"
           :visible-once="{ opacity: 1, x: 0, transition: { duration: 600 } }"
         >
-          <p class="text-stone-600 leading-relaxed mb-6">
-            Η Cretan Royal Transfer δραστηριοποιείται στον τομέα των ιδιωτικών
-            μεταφορών του τουρισμού στην Κρήτη, προσφέροντας υψηλού επιπέδου
-            υπηρεσίες μετακίνησης, με συνέπεια, επαγγελματισμό και σεβασμό προς κάθε
-            επισκέπτη.
-          </p>
-          <p class="text-stone-600 leading-relaxed mb-6">
-            Με πολυετή εμπειρία στον χώρο των μεταφορών από και προς αεροδρόμια,
-            ξενοδοχεία, βίλες και τουριστικούς προορισμούς, στόχος μας είναι να
-            εξασφαλίζουμε σε κάθε πελάτη ένα άνετο ασφαλές και ευχάριστο ταξίδι από
-            την πρώτη έως την τελευταία στιγμή παραμονής του στο νησί.
-          </p>
-          <p class="text-stone-600 leading-relaxed mb-10">
-            Δίνουμε ιδιαίτερη σημασία στην αξιοπιστία και την ποιότητα των υπηρεσιών
-            μας. Όλες οι μεταφορές πραγματοποιούνται με σύγχρονα, καθαρά και πλήρως
-            συντηρημένα οχήματα, ενώ οι οδηγοί μας είναι έμπειροι επαγγελματίες με
-            άριστη γνώση της Κρήτης και των αναγκών του σύγχρονου ταξιδιώτη.
-          </p>
+          <p class="text-stone-600 leading-relaxed mb-6">{{ t('message.about_us_para_1') }}</p>
+          <p class="text-stone-600 leading-relaxed mb-6">{{ t('message.about_us_para_2') }}</p>
+          <p class="text-stone-600 leading-relaxed mb-10">{{ t('message.about_us_para_3') }}</p>
 
           <!-- Why choose us bullet list -->
           <h3 class="text-brand-charcoal font-bold font-heading text-lg mb-5">
-            Γιατί να επιλέξετε την Cretan Royal Transfer
+            {{ t('message.about_us_why_title') }}
           </h3>
           <ul class="space-y-3">
             <li
@@ -90,17 +75,21 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import reliabilityimg from '/src/assets/reliability-aboutus.jpg';
 import safetyimg from '/src/assets/safety-aboutus.jpg';
 import airportimg from '/src/assets/airport-aboutus.jpg';
 
-const bullets = [
-  'Πάντα στην ώρα μας – Παρακολουθούμε την πτήση σας και περιμένουμε.',
-  'Σε περίπτωση καθυστέρησης πτήσεως, δεν χάνεται την κράτηση.',
-  'Ασφαλείς και άνετες μετακινήσεις με σύγχρονο καθαρό όχημα.',
-  'Επαγγελματίες και φιλικοί οδηγοί.',
-  'Σταθερές τιμές – ξέρετε ακριβώς τι πληρώνετε.',
-  'Ιδιωτική μεταφορά χωρίς αναμονές και χωρίς άλλους επιβάτες.',
-  'Διαθέσιμοι 24 ώρες.',
-];
+const { t } = useI18n();
+
+const bullets = computed(() => [
+  t('message.about_us_bullet_1'),
+  t('message.about_us_bullet_2'),
+  t('message.about_us_bullet_3'),
+  t('message.about_us_bullet_4'),
+  t('message.about_us_bullet_5'),
+  t('message.about_us_bullet_6'),
+  t('message.about_us_bullet_7'),
+]);
 </script>
