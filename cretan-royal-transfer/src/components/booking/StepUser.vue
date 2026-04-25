@@ -1,20 +1,22 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
 import { useBookingStore } from '@/stores/booking'
 
+const { t } = useI18n()
 const booking = useBookingStore()
 </script>
 
 <template>
   <div>
-    <h2 class="text-2xl font-bold text-stone-100 mb-2 text-center">Your Details</h2>
-    <p class="text-stone-400 text-center mb-8">Almost there — we just need your contact information</p>
+    <h2 class="text-2xl font-bold text-stone-100 mb-2 text-center">{{ t('message.wizard_user_heading') }}</h2>
+    <p class="text-stone-400 text-center mb-8">{{ t('message.wizard_user_subtitle') }}</p>
 
     <form
       action="https://formspree.io/f/mpqkreew"
       method="POST"
       class="space-y-4"
     >
-      <!-- Hidden booking data -->
+      <!-- Hidden booking data (unchanged) -->
       <input type="hidden" name="booking_type" :value="booking.type" />
       <input type="hidden" name="pickup" :value="booking.pickup" />
       <input type="hidden" name="pickup_details" :value="booking.pickupDetails" />
@@ -29,24 +31,18 @@ const booking = useBookingStore()
       <input type="hidden" name="baby_seats" :value="booking.babySeats" />
       <input type="hidden" name="booster_seats" :value="booking.boosterSeats" />
       <input type="hidden" name="price" :value="booking.hasPrice ? `€${booking.price}` : 'To be confirmed'" />
-
-      <!-- Precise pickup location -->
       <input type="hidden" name="pickup_address" :value="booking.pickupText" />
       <input type="hidden" name="pickup_lat" :value="booking.pickupLatLng?.lat ?? ''" />
       <input type="hidden" name="pickup_lng" :value="booking.pickupLatLng?.lng ?? ''" />
-
-      <!-- Precise dropoff location -->
       <input type="hidden" name="dropoff_address" :value="booking.dropoffText" />
       <input type="hidden" name="dropoff_lat" :value="booking.dropoffLatLng?.lat ?? ''" />
       <input type="hidden" name="dropoff_lng" :value="booking.dropoffLatLng?.lng ?? ''" />
-
-      <!-- Passenger IDs (comma-separated, blanks filtered out) -->
       <input type="hidden" name="passenger_ids" :value="booking.passengerIds.filter(Boolean).join(', ')" />
 
       <!-- Visible fields -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium text-stone-300 mb-1">First Name <span class="text-[#D8A444]">*</span></label>
+          <label class="block text-sm font-medium text-stone-300 mb-1">{{ t('message.wizard_user_first_name') }} <span class="text-[#D8A444]">*</span></label>
           <input
             v-model="booking.name"
             name="name"
@@ -56,7 +52,7 @@ const booking = useBookingStore()
           />
         </div>
         <div>
-          <label class="block text-sm font-medium text-stone-300 mb-1">Last Name <span class="text-[#D8A444]">*</span></label>
+          <label class="block text-sm font-medium text-stone-300 mb-1">{{ t('message.wizard_user_last_name') }} <span class="text-[#D8A444]">*</span></label>
           <input
             v-model="booking.surname"
             name="surname"
@@ -68,7 +64,7 @@ const booking = useBookingStore()
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-stone-300 mb-1">Email <span class="text-[#D8A444]">*</span></label>
+        <label class="block text-sm font-medium text-stone-300 mb-1">{{ t('message.wizard_user_email') }} <span class="text-[#D8A444]">*</span></label>
         <input
           v-model="booking.email"
           name="email"
@@ -79,7 +75,7 @@ const booking = useBookingStore()
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-stone-300 mb-1">Phone <span class="text-[#D8A444]">*</span></label>
+        <label class="block text-sm font-medium text-stone-300 mb-1">{{ t('message.wizard_user_phone') }} <span class="text-[#D8A444]">*</span></label>
         <input
           v-model="booking.phone"
           name="phone"
@@ -90,12 +86,12 @@ const booking = useBookingStore()
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-stone-300 mb-1">Additional Information</label>
+        <label class="block text-sm font-medium text-stone-300 mb-1">{{ t('message.wizard_user_additional_info') }}</label>
         <textarea
           v-model="booking.additionalInfo"
           name="message"
           rows="3"
-          placeholder="Flight number, special requests, accessibility needs..."
+          :placeholder="t('message.wizard_user_additional_placeholder')"
           class="w-full p-3 rounded-lg bg-stone-800 border border-stone-600 text-stone-100 placeholder-stone-500 focus:border-[#D8A444] focus:outline-none resize-none"
         ></textarea>
       </div>
@@ -106,13 +102,13 @@ const booking = useBookingStore()
           @click="booking.prevStep()"
           class="px-6 py-3 rounded-lg font-semibold text-stone-300 border border-stone-600 hover:border-stone-400 transition-all"
         >
-          ← Back
+          ← {{ t('message.wizard_back') }}
         </button>
         <button
           type="submit"
           class="px-8 py-3 rounded-lg font-semibold bg-[#D8A444] text-stone-900 hover:bg-[#B4952E] transition-all"
         >
-          Submit Booking
+          {{ t('message.wizard_user_submit') }}
         </button>
       </div>
     </form>
