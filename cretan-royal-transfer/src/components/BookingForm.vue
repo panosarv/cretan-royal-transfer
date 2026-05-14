@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { trackPhoneClick, trackWhatsAppClick, trackFormSubmit } from '@/utils/analytics';
 
 const { t } = useI18n();
 
@@ -44,6 +45,7 @@ const resetForm = () => {
 };
 
 const openWhatsApp = () => {
+  trackWhatsAppClick('booking_form');
   const message = `Hello, I would like to book a ${selectedService.value} on ${selectedDate.value} for ${guests.value} people. My name is ${name.value} ${surname.value}. My pickup location is ${location.value}.`;
   window.open(`https://wa.me/${companyPhone}?text=${encodeURIComponent(message)}`, '_blank');
 };
@@ -52,7 +54,7 @@ const openWhatsApp = () => {
 <template>
  
   <div class="max-w-2xl mx-auto p-10 bg-white rounded-lg shadow-xl border border-gray-200">
-    <form action="https://formsubmit.co/cretanroyaltransfer@gmail.com" method="POST" class="space-y-6">
+    <form action="https://formsubmit.co/cretanroyaltransfer@gmail.com" method="POST" class="space-y-6" @submit="trackFormSubmit('booking_form', selectedService)">
       <input type="hidden" name="_subject" value="New Transfer Booking">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_autoresponse" value="Thank you for your booking request. We will contact you shortly.">
@@ -114,7 +116,7 @@ const openWhatsApp = () => {
     <div class="mt-6 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
       <button type="submit" :disabled="!isFormValid" class="w-full md:w-1/2 bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition">{{ t('message.send_email') }}</button>
       <button @click="openWhatsApp" class="w-full md:w-1/2 bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 transition">{{ t('message.message_on_whatsapp') }}</button>
-      <a :href="`tel:${companyPhone}`" class="w-full md:w-1/2 bg-yellow-500 text-white py-3 px-4 rounded-md hover:bg-yellow-600 text-center transition">{{ t('message.call_now') }}</a>
+      <a :href="`tel:${companyPhone}`" @click="trackPhoneClick('booking_form')" class="w-full md:w-1/2 bg-yellow-500 text-white py-3 px-4 rounded-md hover:bg-yellow-600 text-center transition">{{ t('message.call_now') }}</a>
     </div>
   </form>
   </div>

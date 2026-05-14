@@ -46,7 +46,7 @@
               {{ t('message.book_us') }}
             </button>
           </RouterLink>
-          <a href="tel:+306973857378">
+          <a href="tel:+306973857378" @click="trackPhoneClick('hero')">
             <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/10 transition-all duration-300 hover:scale-105 w-full sm:w-auto font-heading">
               {{ t('message.call_now') }}
             </button>
@@ -62,6 +62,7 @@
 import { RouterLink } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useParallax } from '@/composables/useParallax';
+import { trackPhoneClick } from '@/utils/analytics';
 
 const { t } = useI18n();
 const { offsetY } = useParallax(0.15);

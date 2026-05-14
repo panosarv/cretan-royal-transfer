@@ -1,6 +1,7 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { useBookingStore } from '@/stores/booking'
+import { trackFormSubmit } from '@/utils/analytics'
 
 const { t } = useI18n()
 const booking = useBookingStore()
@@ -15,6 +16,7 @@ const booking = useBookingStore()
       action="https://formspree.io/f/mpqkreew"
       method="POST"
       class="space-y-4"
+      @submit="trackFormSubmit('booking_wizard', booking.type)"
     >
       <!-- Hidden booking data (unchanged) -->
       <input type="hidden" name="booking_type" :value="booking.type" />
